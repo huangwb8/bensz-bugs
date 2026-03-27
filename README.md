@@ -27,12 +27,24 @@
 建议对以下信息做 JSON 规范化后计算 `sha256`：
 - `skill_name`
 - `skill_author`
-- `reporter_identity`
 - `bug_summary`
 - `expected_behavior`
 - `actual_behavior`
-- `reproduction_steps`
 - `environment_fingerprint`
+
+说明：
+- 默认不把 `github_username` 放进哈希，避免同一个人先本地收集、后补 GitHub 身份时被误判成新 bug
+- 默认不把 `reproduction_steps` 放进哈希，避免后续补充步骤时错误地产生新 bug
+
+## 隐私规则
+
+公开上传前必须先做脱敏：
+- 本地用户名
+- 主机名
+- 本地工作目录
+- 本地绝对路径
+
+这些信息可以保留在用户本地副本里，但不应进入公开仓库。
 
 ## 上传约束
 
