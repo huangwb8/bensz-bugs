@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/huangwb8/bensz-bugs/schemas/bug-context.schema.json",
+  "title": "Bensz Skill Bug Context",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "bug_hash",
+    "skill",
+    "reporter",
+    "bug",
+    "environment",
+    "tracking"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "bug_hash": {"type": "string"},
+    "skill": {
+      "type": "object",
+      "required": ["name", "author"],
+      "properties": {
+        "name": {"type": "string"},
+        "author": {"type": "string"},
+        "source_path": {"type": ["string", "null"]},
+        "source_repo": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "reporter": {
+      "type": "object",
+      "required": ["display_name"],
+      "properties": {
+        "display_name": {"type": "string"},
+        "github_username": {"type": ["string", "null"]},
+        "local_username": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "bug": {
+      "type": "object",
+      "required": ["summary", "expected_behavior", "actual_behavior", "is_skill_design_defect"],
+      "properties": {
+        "summary": {"type": "string"},
+        "expected_behavior": {"type": "string"},
+        "actual_behavior": {"type": "string"},
+        "reproduction_steps": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "evidence": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "workaround": {"type": ["string", "null"]},
+        "is_skill_design_defect": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "environment": {
+      "type": "object",
+      "required": ["device", "os", "runtime"],
+      "properties": {
+        "device": {"type": "object"},
+        "os": {"type": "object"},
+        "runtime": {"type": "object"},
+        "software_versions": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "tracking": {
+      "type": "object",
+      "required": ["collected_at", "public_reported"],
+      "properties": {
+        "collected_at": {"type": "string"},
+        "first_seen_at": {"type": ["string", "null"]},
+        "last_seen_at": {"type": ["string", "null"]},
+        "occurrence_count": {"type": "integer", "minimum": 1},
+        "public_reported": {"type": "boolean"},
+        "public_repo": {"type": ["string", "null"]},
+        "public_path": {"type": ["string", "null"]},
+        "reported_at": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
