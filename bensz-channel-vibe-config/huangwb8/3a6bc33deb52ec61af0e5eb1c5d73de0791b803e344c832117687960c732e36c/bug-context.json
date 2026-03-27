@@ -1,0 +1,121 @@
+{
+  "bug": {
+    "actual_behavior": "在终端返回不稳定时，skill 没有把发布类操作标记为不可重试的高风险动作，导致代理可能通过更换 slug 或再次调用 create 来确认结果，最终产生多篇内容相同的文章并触发 RSS/邮箱冗余推送。",
+    "additional_notes": "用户明确要求：任何时间都不应进行多余测试；若跑不通，多半是网络问题，过会就好，因此只需要暂停等待上传结束。",
+    "evidence": [
+      "真实操作中产生了两篇同标题文章：id=121 slug=glm-5-1-zai-coding-agent 与 id=122 slug=glm-5-1-zai-coding-agent-20260327；第二篇随后被人工删除。"
+    ],
+    "expected_behavior": "当 articles create 等变更类命令返回不稳定、输出延迟或网络抖动时，skill 应明确禁止再次测试或重试发布；AI 只能暂停等待、轮询回查现有文章是否已创建，避免重复触发不可撤回的订阅推送。",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "使用 bensz-channel-vibe-config 发布文章到已开启 RSS/邮件订阅的频道。",
+      "让第一次 articles create 在终端侧表现为输出延迟、会话不稳定或结果难以立即确认。",
+      "按现有 skill 说明继续以重试/再次测试方式确认发布结果。"
+    ],
+    "severity": "critical",
+    "summary": "发布文章结果不确定时缺少禁止重试规则，可能导致重复文章被推送到 RSS/邮件订阅",
+    "workaround": "对于任何 create/update/delete 等变更类操作，若终端返回不稳定，只暂停等待并用 list/show 回查状态；绝不再次 create 作为测试。"
+  },
+  "bug_hash": "3a6bc33deb52ec61af0e5eb1c5d73de0791b803e344c832117687960c732e36c",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "在终端返回不稳定时，skill 没有把发布类操作标记为不可重试的高风险动作，导致代理可能通过更换 slug 或再次调用 create 来确认结果，最终产生多篇内容相同的文章并触发 RSS/邮箱冗余推送。",
+        "expected_behavior": "当 articles create 等变更类命令返回不稳定、输出延迟或网络抖动时，skill 应明确禁止再次测试或重试发布；AI 只能暂停等待、轮询回查现有文章是否已创建，避免重复触发不可撤回的订阅推送。",
+        "summary": "发布文章结果不确定时缺少禁止重试规则，可能导致重复文章被推送到 RSS/邮件订阅"
+      },
+      "environment": {
+        "agent_runtime": "codex",
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25E246",
+            "product_name": "macOS",
+            "product_version": "26.4"
+          },
+          "processor": "arm",
+          "release": "25.4.0",
+          "version": "Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132"
+        },
+        "software_versions": {
+          "claude": "2.1.81 (Claude Code)",
+          "codex": "codex-cli 0.116.0",
+          "gh": "gh version 2.87.3 (2026-02-23)",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "bensz-channel-vibe-config"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": "redacted",
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25E246",
+        "product_name": "macOS",
+        "product_version": "26.4"
+      },
+      "processor": "arm",
+      "release": "25.4.0",
+      "version": "Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "codex",
+      "cwd": "redacted",
+      "hostname": "redacted",
+      "local_username": "redacted",
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.81 (Claude Code)",
+      "codex": "codex-cli 0.116.0",
+      "gh": "gh version 2.87.3 (2026-02-23)",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "bensz-channel-vibe-config",
+    "source_path": "redacted",
+    "source_repo": "/Volumes/2T01/winE/Starup/bensz-devtools"
+  },
+  "tracking": {
+    "collected_at": "2026-03-27T15:20:50Z",
+    "first_seen_at": "2026-03-27T15:20:50Z",
+    "last_seen_at": "2026-03-27T15:20:50Z",
+    "local_path": "redacted",
+    "occurrence_count": 1,
+    "public_path": "bensz-channel-vibe-config/huangwb8/3a6bc33deb52ec61af0e5eb1c5d73de0791b803e344c832117687960c732e36c",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-03-27T15:26:10Z"
+  }
+}
