@@ -1,0 +1,127 @@
+{
+  "bug": {
+    "actual_behavior": "一次连续执行中，validate_compaction.py 报出 JSONDecodeError，提示无法解析 size-after.json；随后在 description 解析结果已与快照完全一致时，validation.json 仍保留 description changed warning。",
+    "additional_notes": null,
+    "evidence": [
+      "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "使用 common.parse_frontmatter 对当前 SKILL.md 与快照的 description 做比较，结果为 True，但 validation.json 仍报告 description changed warning。"
+    ],
+    "expected_behavior": "在同一 run 中重跑 measure_markdown.py 后，validate_compaction.py 应稳定读取 size-after.json，并且当 SKILL.md frontmatter.description 与快照解析结果相同的时候不应继续给出 warning。",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "对目标 skill 运行 init_workspace.py 建立 run 目录。",
+      "修改 SKILL.md 后，运行 measure_markdown.py --phase after。",
+      "紧接着运行 validate_compaction.py；一次执行出现 JSONDecodeError。",
+      "将 frontmatter.description 恢复为与快照完全相同后再次运行 validate_compaction.py；warning 仍未消失。"
+    ],
+    "severity": "medium",
+    "summary": "validate_compaction 在连续 measure/validate 场景下存在不稳定读取与 frontmatter.description 假阳性",
+    "workaround": "重跑 validate_compaction.py 后可继续完成任务；description warning 需要人工确认为工具级假阳性，不影响本次压缩结果。"
+  },
+  "bug_hash": "e176df4897c34c4e37e46539d5aa3bed291f479ecfecc6a3955209627e264d7b",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "一次连续执行中，validate_compaction.py 报出 JSONDecodeError，提示无法解析 size-after.json；随后在 description 解析结果已与快照完全一致时，validation.json 仍保留 description changed warning。",
+        "expected_behavior": "在同一 run 中重跑 measure_markdown.py 后，validate_compaction.py 应稳定读取 size-after.json，并且当 SKILL.md frontmatter.description 与快照解析结果相同的时候不应继续给出 warning。",
+        "summary": "validate_compaction 在连续 measure/validate 场景下存在不稳定读取与 frontmatter.description 假阳性"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25E246",
+            "product_name": "macOS",
+            "product_version": "26.4"
+          },
+          "processor": "arm",
+          "release": "25.4.0",
+          "version": "Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "OpenAI Codex CLI"
+        },
+        "software_versions": {
+          "claude": "2.1.92 (Claude Code)",
+          "codex": "codex-cli 0.118.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python": "3.12",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "compact-bensz-skills"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25E246",
+        "product_name": "macOS",
+        "product_version": "26.4"
+      },
+      "processor": "arm",
+      "release": "25.4.0",
+      "version": "Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "OpenAI Codex CLI",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.92 (Claude Code)",
+      "codex": "codex-cli 0.118.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python": "3.12",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "compact-bensz-skills",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-04-11T00:45:09Z",
+    "first_seen_at": "2026-04-11T00:45:09Z",
+    "last_seen_at": "2026-04-11T00:45:09Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "compact-bensz-skills/huangwb8/e176df4897c34c4e37e46539d5aa3bed291f479ecfecc6a3955209627e264d7b",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-04-14T14:24:41Z"
+  }
+}
