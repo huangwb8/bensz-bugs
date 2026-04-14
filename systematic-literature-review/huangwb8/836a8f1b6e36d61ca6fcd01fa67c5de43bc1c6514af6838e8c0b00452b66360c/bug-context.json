@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "openalex_search.py 使用 requests 默认 Accept-Encoding，收到 br 响应后在分页请求中抛出 ContentDecodingError，导致 pipeline 阶段1失败",
+    "additional_notes": null,
+    "evidence": [
+      "Received response with content-encoding: br, but failed to decode it"
+    ],
+    "expected_behavior": "阶段1 检索应能稳定从 OpenAlex 拉取 JSON 结果并生成 papers.jsonl",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "在 pipelines/reviews 中运行 pipeline_runner.py，topic=近端胃双通道手术-01，domain=clinical，显式传入 --work-dir",
+      "阶段1 调用 openalex_search.py 后抛出 requests.exceptions.ContentDecodingError"
+    ],
+    "severity": "high",
+    "summary": "OpenAlex 检索默认接受 br 压缩导致分页请求在当前 requests/urllib3/brotli 环境下稳定解码失败",
+    "workaround": "在检索请求中显式设置 Accept-Encoding=gzip, deflate，或在任务目录中用本地脚本生成 papers_*.jsonl 后从阶段2继续"
+  },
+  "bug_hash": "836a8f1b6e36d61ca6fcd01fa67c5de43bc1c6514af6838e8c0b00452b66360c",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "openalex_search.py 使用 requests 默认 Accept-Encoding，收到 br 响应后在分页请求中抛出 ContentDecodingError，导致 pipeline 阶段1失败",
+        "expected_behavior": "阶段1 检索应能稳定从 OpenAlex 拉取 JSON 结果并生成 papers.jsonl",
+        "summary": "OpenAlex 检索默认接受 br 压缩导致分页请求在当前 requests/urllib3/brotli 环境下稳定解码失败"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25D2128",
+            "product_name": "macOS",
+            "product_version": "26.3.1"
+          },
+          "processor": "arm",
+          "release": "25.3.0",
+          "version": "Darwin Kernel Version 25.3.0: Wed Jan 28 20:53:31 PST 2026; root:xnu-12377.91.3~2/RELEASE_ARM64_T8103"
+        },
+        "runtime": {
+          "agent_runtime": "Codex CLI"
+        },
+        "software_versions": {
+          "claude": "2.1.50 (Claude Code)",
+          "codex": "codex-cli 0.104.0",
+          "gh": null,
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v24.11.1",
+          "npm": "11.6.2",
+          "python3": "Python 3.13.11",
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "systematic-literature-review"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25D2128",
+        "product_name": "macOS",
+        "product_version": "26.3.1"
+      },
+      "processor": "arm",
+      "release": "25.3.0",
+      "version": "Darwin Kernel Version 25.3.0: Wed Jan 28 20:53:31 PST 2026; root:xnu-12377.91.3~2/RELEASE_ARM64_T8103"
+    },
+    "runtime": {
+      "agent_runtime": "Codex CLI",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.13.11",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.50 (Claude Code)",
+      "codex": "codex-cli 0.104.0",
+      "gh": null,
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v24.11.1",
+      "npm": "11.6.2",
+      "python3": "Python 3.13.11",
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "systematic-literature-review",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-04-10T07:22:10Z",
+    "first_seen_at": "2026-04-10T07:22:10Z",
+    "last_seen_at": "2026-04-10T07:22:10Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "systematic-literature-review/huangwb8/836a8f1b6e36d61ca6fcd01fa67c5de43bc1c6514af6838e8c0b00452b66360c",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-04-14T14:29:37Z"
+  }
+}
