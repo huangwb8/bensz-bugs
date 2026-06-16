@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "render_snapshots.py 在部分要点右侧绘制叉号装饰，用户反馈含义不明，容易误解为该条内容是错误项。",
+    "additional_notes": null,
+    "evidence": [
+      "用户反馈：有一些叉，含义不明；这是错误？还是啥？但明明好像是对的。"
+    ],
+    "expected_behavior": "快照正文要点的装饰符号应保持中性或明确表达层级，不应让正确要点被误读为错误、禁忌或不推荐。",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "使用 benszai-xiaohongshu 生成包含多个正文要点的 bold 主题快照。",
+      "查看生成卡片中第 3、5 等要点右侧的叉号装饰。"
+    ],
+    "severity": "medium",
+    "summary": "小红书快照正文要点使用叉号装饰导致被误解为错误项",
+    "workaround": "将叉号装饰替换为中性的右侧强调短线/圆点后重新渲染快照。"
+  },
+  "bug_hash": "b81db89aba64cc1c3f7ee084b29ae560a9af66e9d22dfcb665d1a2ebf06b69c1",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "render_snapshots.py 在部分要点右侧绘制叉号装饰，用户反馈含义不明，容易误解为该条内容是错误项。",
+        "expected_behavior": "快照正文要点的装饰符号应保持中性或明确表达层级，不应让正确要点被误读为错误、禁忌或不推荐。",
+        "summary": "小红书快照正文要点使用叉号装饰导致被误解为错误项"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F71",
+            "product_name": "macOS",
+            "product_version": "26.5"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": "2.1.119 (Claude Code)",
+          "codex": "codex-cli 0.124.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "benszai-xiaohongshu"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "desktop"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F71",
+        "product_name": "macOS",
+        "product_version": "26.5"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.119 (Claude Code)",
+      "codex": "codex-cli 0.124.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "benszai-xiaohongshu",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-05-28T14:46:19Z",
+    "first_seen_at": "2026-05-28T14:46:19Z",
+    "last_seen_at": "2026-05-28T14:46:19Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "benszai-xiaohongshu/huangwb8/b81db89aba64cc1c3f7ee084b29ae560a9af66e9d22dfcb665d1a2ebf06b69c1",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-06-16T22:41:34Z"
+  }
+}
