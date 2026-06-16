@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "当卡片 body 超过 5 个要点时，render_snapshots.py 会在图片底部绘制“共 N 个要点，建议收藏慢慢看”。",
+    "additional_notes": null,
+    "evidence": [
+      "图片中出现未在用户文案或 JSON 中定义的“共6个要点，建议收藏慢慢看”。"
+    ],
+    "expected_behavior": "小红书快照应只展示用户文案或 JSON 规格中的内容，不应自动添加无关提示语。",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "准备一个 body 超过 5 条的小红书快照 JSON。",
+      "运行 skills/benszai-xiaohongshu/scripts/render_snapshots.py 渲染 PNG。"
+    ],
+    "severity": "low",
+    "summary": "快照渲染脚本会自动添加无意义的要点数量备注",
+    "workaround": "删除 render_snapshots.py 中自动绘制该备注的逻辑，然后重新渲染。"
+  },
+  "bug_hash": "3cab1119c32136d70b649edce15c5f5d1eea8babb22406bb0c90d2dfb4630bcc",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "当卡片 body 超过 5 个要点时，render_snapshots.py 会在图片底部绘制“共 N 个要点，建议收藏慢慢看”。",
+        "expected_behavior": "小红书快照应只展示用户文案或 JSON 规格中的内容，不应自动添加无关提示语。",
+        "summary": "快照渲染脚本会自动添加无意义的要点数量备注"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F80",
+            "product_name": "macOS",
+            "product_version": "26.5.1"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "Codex CLI"
+        },
+        "software_versions": {
+          "claude": "2.1.167 (Claude Code)",
+          "codex": "codex-cli 0.137.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "benszai-xiaohongshu"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F80",
+        "product_name": "macOS",
+        "product_version": "26.5.1"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "Codex CLI",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.167 (Claude Code)",
+      "codex": "codex-cli 0.137.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "benszai-xiaohongshu",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-06-08T12:03:17Z",
+    "first_seen_at": "2026-06-08T12:03:17Z",
+    "last_seen_at": "2026-06-08T12:03:17Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "benszai-xiaohongshu/huangwb8/3cab1119c32136d70b649edce15c5f5d1eea8babb22406bb0c90d2dfb4630bcc",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-06-16T22:41:31Z"
+  }
+}
