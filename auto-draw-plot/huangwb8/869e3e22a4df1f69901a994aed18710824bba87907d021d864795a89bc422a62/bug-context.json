@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "In roadmap mode, a valid gpt-image-2 Images request with size 1024x1024 received HTTP 504 after the upstream bridge recorded provider 502 around 90 seconds; the script treated it as temporarily unavailable and planned another retry after 120 seconds, delaying fallback.",
+    "additional_notes": null,
+    "evidence": [
+      "Local debug request used model gpt-image-2, size 1024x1024, n=1; remote ops recorded upstream/provider HTTP 502 on /v1/responses after about 90 seconds. Size was valid, so this was not an invalid-size error."
+    ],
+    "expected_behavior": "When gpt-image-2 via BenszAPI returns repeated upstream 502/504 for diagram-style requests, auto-draw-plot should classify the failure quickly and fall back to Nano Banana/Gemini, or expose a concise actionable error without waiting through long retry-after delays.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run auto-draw-plot in roadmap mode with a simple Chinese labelled cat roadmap request and max_rounds=1 using a BenszAPI gpt-image-2 provider backed by OAuth Images bridge.",
+      "Observe gpt-image-2 HTTP 504 and the warning that it will retry after 120 seconds instead of quickly falling back to Nano Banana/Gemini."
+    ],
+    "severity": "medium",
+    "summary": "roadmap/schematic gpt-image-2 bridge 502/504 causes long retry loop before provider fallback",
+    "workaround": "Use a dedicated image group/provider with stable API-key image upstream, or make auto-draw-plot prefer Nano Banana/Gemini for roadmap/schematic until gpt-image-2 bridge stability improves."
+  },
+  "bug_hash": "869e3e22a4df1f69901a994aed18710824bba87907d021d864795a89bc422a62",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "In roadmap mode, a valid gpt-image-2 Images request with size 1024x1024 received HTTP 504 after the upstream bridge recorded provider 502 around 90 seconds; the script treated it as temporarily unavailable and planned another retry after 120 seconds, delaying fallback.",
+        "expected_behavior": "When gpt-image-2 via BenszAPI returns repeated upstream 502/504 for diagram-style requests, auto-draw-plot should classify the failure quickly and fall back to Nano Banana/Gemini, or expose a concise actionable error without waiting through long retry-after delays.",
+        "summary": "roadmap/schematic gpt-image-2 bridge 502/504 causes long retry loop before provider fallback"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F80",
+            "product_name": "macOS",
+            "product_version": "26.5.1"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "codex"
+        },
+        "software_versions": {
+          "claude": "2.1.167 (Claude Code)",
+          "codex": "codex-cli 0.137.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "auto-draw-plot"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F80",
+        "product_name": "macOS",
+        "product_version": "26.5.1"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.167 (Claude Code)",
+      "codex": "codex-cli 0.137.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "auto-draw-plot",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-06-06T13:39:25Z",
+    "first_seen_at": "2026-06-06T13:39:25Z",
+    "last_seen_at": "2026-06-06T13:39:25Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "auto-draw-plot/huangwb8/869e3e22a4df1f69901a994aed18710824bba87907d021d864795a89bc422a62",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-06-16T22:41:18Z"
+  }
+}
