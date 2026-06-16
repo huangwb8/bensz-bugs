@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "The default urllib collector received HTTP 403 Cloudflare 1010 Access denied on all endpoints until a browser-like User-Agent and related headers were added.",
+    "additional_notes": null,
+    "evidence": [
+      "HTTP 403 Cloudflare error 1010: site owner has blocked access based on browser signature."
+    ],
+    "expected_behavior": "The read-only collector should be robust against common edge-layer bot signature checks when querying an authorized sub2api site.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Use an authorized sub2api site protected by Cloudflare browser-signature rules.",
+      "Run collect_sub2api_data.py with valid SUB2API_BASE_URL and SUB2API_ADMIN_API_KEY."
+    ],
+    "severity": "medium",
+    "summary": "collector lacks browser-like User-Agent and can be blocked by Cloudflare 1010",
+    "workaround": "Use browser-like Accept/User-Agent/Origin/Referer headers for read-only collection."
+  },
+  "bug_hash": "48f00a0ee28594b5e704d13b3501eb76f4efb58e0ae11481cc9b98f1c43b1bde",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The default urllib collector received HTTP 403 Cloudflare 1010 Access denied on all endpoints until a browser-like User-Agent and related headers were added.",
+        "expected_behavior": "The read-only collector should be robust against common edge-layer bot signature checks when querying an authorized sub2api site.",
+        "summary": "collector lacks browser-like User-Agent and can be blocked by Cloudflare 1010"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25E253",
+            "product_name": "macOS",
+            "product_version": "26.4.1"
+          },
+          "processor": "arm",
+          "release": "25.4.0",
+          "version": "Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "Codex CLI"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.124.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "sub2api-summary"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25E253",
+        "product_name": "macOS",
+        "product_version": "26.4.1"
+      },
+      "processor": "arm",
+      "release": "25.4.0",
+      "version": "Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "Codex CLI",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.124.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "sub2api-summary",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-05-02T16:16:45Z",
+    "first_seen_at": "2026-05-02T16:16:45Z",
+    "last_seen_at": "2026-05-02T16:16:45Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "sub2api-summary/huangwb8/48f00a0ee28594b5e704d13b3501eb76f4efb58e0ae11481cc9b98f1c43b1bde",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-06-16T22:41:43Z"
+  }
+}
