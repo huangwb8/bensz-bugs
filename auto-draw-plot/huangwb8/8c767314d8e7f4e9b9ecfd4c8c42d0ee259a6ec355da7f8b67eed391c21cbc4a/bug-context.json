@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "Round 1 generated a valid PNG, but round 2 image-to-image edit failed at the gpt-image-2 edits job endpoint with HTTP 400 Malformed JSON request body, aborting the run before final result metadata was written.",
+    "additional_notes": null,
+    "evidence": [
+      "HTTP 400 Bad Request: Malformed JSON request body from gpt-image-2 edits endpoint during round 2."
+    ],
+    "expected_behavior": "When round 1 does not pass heuristic evaluation, auto-draw-plot should use the previous PNG as a reference and complete the next gpt-image-2 image edit round or report a provider-specific unsupported edit mode cleanly.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run auto-draw-plot in schematic mode with gpt-image-2 and max_rounds greater than 1.",
+      "Allow round 1 to complete and trigger round 2 image-to-image editing using the previous output PNG as reference."
+    ],
+    "severity": "medium",
+    "summary": "gpt-image-2 image-to-image round fails with malformed JSON request body",
+    "workaround": "Use the valid round-01 output as final when acceptable, or rerun with max_rounds=1 to avoid the edit endpoint."
+  },
+  "bug_hash": "8c767314d8e7f4e9b9ecfd4c8c42d0ee259a6ec355da7f8b67eed391c21cbc4a",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "Round 1 generated a valid PNG, but round 2 image-to-image edit failed at the gpt-image-2 edits job endpoint with HTTP 400 Malformed JSON request body, aborting the run before final result metadata was written.",
+        "expected_behavior": "When round 1 does not pass heuristic evaluation, auto-draw-plot should use the previous PNG as a reference and complete the next gpt-image-2 image edit round or report a provider-specific unsupported edit mode cleanly.",
+        "summary": "gpt-image-2 image-to-image round fails with malformed JSON request body"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F80",
+            "product_name": "macOS",
+            "product_version": "26.5.1"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:38:00 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8103"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": "2.1.50 (Claude Code)",
+          "codex": "codex-cli 0.124.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v24.11.1",
+          "npm": "11.6.2",
+          "python3": "Python 3.13.11",
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "auto-draw-plot"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F80",
+        "product_name": "macOS",
+        "product_version": "26.5.1"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:38:00 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8103"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.13.11",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.50 (Claude Code)",
+      "codex": "codex-cli 0.124.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v24.11.1",
+      "npm": "11.6.2",
+      "python3": "Python 3.13.11",
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "auto-draw-plot",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-06-17T13:03:46Z",
+    "first_seen_at": "2026-06-17T13:03:46Z",
+    "last_seen_at": "2026-06-17T13:03:46Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "auto-draw-plot/huangwb8/8c767314d8e7f4e9b9ecfd4c8c42d0ee259a6ec355da7f8b67eed391c21cbc4a",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-06-17T13:11:07Z"
+  }
+}
