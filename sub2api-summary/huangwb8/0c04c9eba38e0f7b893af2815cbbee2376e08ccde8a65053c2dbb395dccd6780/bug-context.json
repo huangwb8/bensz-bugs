@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "The payment dashboard collection output includes raw user email values inside recent_orders, despite the skill safety boundary requiring recursive redaction.",
+    "additional_notes": null,
+    "evidence": [
+      "recent_orders user identity fields remain unredacted in the collected payment dashboard output."
+    ],
+    "expected_behavior": "All collected payment dashboard fields containing user identity data should be redacted before being written to data files.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run sub2api-summary collection against a site with payment dashboard data.",
+      "Inspect the collected payment_dashboard.json recent_orders entries."
+    ],
+    "severity": "high",
+    "summary": "payment_dashboard recent_orders are not fully redacted",
+    "workaround": "Do not quote or copy recent_orders identity fields; use aggregate payment_dashboard totals and redacted order sample fields for analysis."
+  },
+  "bug_hash": "0c04c9eba38e0f7b893af2815cbbee2376e08ccde8a65053c2dbb395dccd6780",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The payment dashboard collection output includes raw user email values inside recent_orders, despite the skill safety boundary requiring recursive redaction.",
+        "expected_behavior": "All collected payment dashboard fields containing user identity data should be redacted before being written to data files.",
+        "summary": "payment_dashboard recent_orders are not fully redacted"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F80",
+            "product_name": "macOS",
+            "product_version": "26.5.1"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "codex"
+        },
+        "software_versions": {
+          "claude": "2.1.181 (Claude Code)",
+          "codex": "codex-cli 0.137.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "sub2api-summary"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F80",
+        "product_name": "macOS",
+        "product_version": "26.5.1"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.181 (Claude Code)",
+      "codex": "codex-cli 0.137.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "sub2api-summary",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-06-28T03:24:59Z",
+    "first_seen_at": "2026-06-28T03:24:59Z",
+    "last_seen_at": "2026-06-28T03:24:59Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "sub2api-summary/huangwb8/0c04c9eba38e0f7b893af2815cbbee2376e08ccde8a65053c2dbb395dccd6780",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-07-10T23:18:13Z"
+  }
+}
