@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "The remote download path always ran a shallow clone of the whole repository first, then resolved skills_path locally, so a large repository such as ChineseResearchLaTeX downloaded unrelated non-skill content.",
+    "additional_notes": "Fixed in project source version 0.5.6; no installed system-level skill source was edited.",
+    "evidence": [
+      "_download_remote_source used git clone --depth 1 for the full repository before calling _resolve_remote_skills_root(repo_root, skills_path)."
+    ],
+    "expected_behavior": "When a remote source sets skills_path to a subdirectory such as skills, the installer should download only that target skill subtree when possible.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Configure a remote source with url https://github.com/huangwb8/ChineseResearchLaTeX and skills_path skills.",
+      "Run install-bensz-skills in remote check or auto mode for the research source."
+    ],
+    "severity": "important",
+    "summary": "Remote install cloned entire large repository even when skills_path targeted a subdirectory",
+    "workaround": "Patch the project source so non-root skills_path uses git clone --filter=blob:none --sparse followed by git sparse-checkout set <skills_path>, with full shallow clone fallback."
+  },
+  "bug_hash": "f6ad8eaf837b6fa458897e080cf3073219dbb6e93931c7af5899d43630158f09",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The remote download path always ran a shallow clone of the whole repository first, then resolved skills_path locally, so a large repository such as ChineseResearchLaTeX downloaded unrelated non-skill content.",
+        "expected_behavior": "When a remote source sets skills_path to a subdirectory such as skills, the installer should download only that target skill subtree when possible.",
+        "summary": "Remote install cloned entire large repository even when skills_path targeted a subdirectory"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F84",
+            "product_name": "macOS",
+            "product_version": "26.5.2"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "Codex CLI"
+        },
+        "software_versions": {
+          "claude": "2.1.181 (Claude Code)",
+          "codex": "codex-cli 0.137.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "install-bensz-skills"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F84",
+        "product_name": "macOS",
+        "product_version": "26.5.2"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "Codex CLI",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.181 (Claude Code)",
+      "codex": "codex-cli 0.137.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "install-bensz-skills",
+    "source_path": null,
+    "source_repo": "huangwb8/skills"
+  },
+  "tracking": {
+    "collected_at": "2026-07-04T06:29:16Z",
+    "first_seen_at": "2026-07-04T06:29:16Z",
+    "last_seen_at": "2026-07-04T06:29:16Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "install-bensz-skills/huangwb8/f6ad8eaf837b6fa458897e080cf3073219dbb6e93931c7af5899d43630158f09",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-07-10T23:18:02Z"
+  }
+}
