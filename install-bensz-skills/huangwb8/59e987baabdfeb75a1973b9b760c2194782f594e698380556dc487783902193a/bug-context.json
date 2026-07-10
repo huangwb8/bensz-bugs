@@ -1,0 +1,124 @@
+{
+  "bug": {
+    "actual_behavior": "The command accepted --anthropic-docs but still prompted through all configured remote sources instead of selecting only Anthropic docs.",
+    "additional_notes": null,
+    "evidence": [
+      "Help lists --anthropic-docs, but filtered run did not show Selected sources: Anthropic docs and entered all-source prompts."
+    ],
+    "expected_behavior": "Running remote check with --anthropic-docs should select only the anthropic-docs remote source.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run the installer in remote check mode with the --anthropic-docs source flag.",
+      "Observe that it asks whether to install the general and research sources before the Anthropic docs source."
+    ],
+    "severity": "medium",
+    "summary": "Remote source filter with hyphenated source id is not applied",
+    "workaround": "Answer no for unrelated sources, then answer yes for the Anthropic docs source."
+  },
+  "bug_hash": "59e987baabdfeb75a1973b9b760c2194782f594e698380556dc487783902193a",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The command accepted --anthropic-docs but still prompted through all configured remote sources instead of selecting only Anthropic docs.",
+        "expected_behavior": "Running remote check with --anthropic-docs should select only the anthropic-docs remote source.",
+        "summary": "Remote source filter with hyphenated source id is not applied"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F84",
+            "product_name": "macOS",
+            "product_version": "26.5.2"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "Codex CLI"
+        },
+        "software_versions": {
+          "claude": "2.1.181 (Claude Code)",
+          "codex": "codex-cli 0.137.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "install-bensz-skills": "0.5.7",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "install-bensz-skills"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F84",
+        "product_name": "macOS",
+        "product_version": "26.5.2"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "Codex CLI",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.181 (Claude Code)",
+      "codex": "codex-cli 0.137.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "install-bensz-skills": "0.5.7",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "install-bensz-skills",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-04T07:10:19Z",
+    "first_seen_at": "2026-07-04T07:10:19Z",
+    "last_seen_at": "2026-07-04T07:10:19Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "install-bensz-skills/huangwb8/59e987baabdfeb75a1973b9b760c2194782f594e698380556dc487783902193a",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-07-10T23:17:59Z"
+  }
+}
