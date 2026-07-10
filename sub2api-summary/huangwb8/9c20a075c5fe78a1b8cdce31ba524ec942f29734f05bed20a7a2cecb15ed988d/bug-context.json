@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "采集 payment dashboard 时，recent_orders 里的 user 字段可能保留原始邮箱形式，说明脱敏规则只覆盖了 email/username 等字段名，没有覆盖通用 user 字段。",
+    "additional_notes": null,
+    "evidence": [
+      "payment_dashboard.json 的 recent_orders[*].user 字段可能出现未脱敏邮箱；未在任务输出中复述具体值。"
+    ],
+    "expected_behavior": "只读采集脚本在落盘前应脱敏所有可能包含邮箱、用户名或账号标识的字段，包括 payment dashboard recent_orders 中的 user 字段。",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "使用 sub2api-summary 对真实站点执行只读采集。",
+      "检查脱敏后的 payment_dashboard.json 中 recent_orders[*].user 字段。"
+    ],
+    "severity": "high",
+    "summary": "支付看板响应中的通用 user 字段未被脱敏",
+    "workaround": "当前任务不引用该字段；后续分析只使用聚合收入和脱敏 top_users。"
+  },
+  "bug_hash": "9c20a075c5fe78a1b8cdce31ba524ec942f29734f05bed20a7a2cecb15ed988d",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "采集 payment dashboard 时，recent_orders 里的 user 字段可能保留原始邮箱形式，说明脱敏规则只覆盖了 email/username 等字段名，没有覆盖通用 user 字段。",
+        "expected_behavior": "只读采集脚本在落盘前应脱敏所有可能包含邮箱、用户名或账号标识的字段，包括 payment dashboard recent_orders 中的 user 字段。",
+        "summary": "支付看板响应中的通用 user 字段未被脱敏"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F80",
+            "product_name": "macOS",
+            "product_version": "26.5.1"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "codex"
+        },
+        "software_versions": {
+          "claude": "2.1.181 (Claude Code)",
+          "codex": "codex-cli 0.137.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "sub2api-summary"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F80",
+        "product_name": "macOS",
+        "product_version": "26.5.1"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:26 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.181 (Claude Code)",
+      "codex": "codex-cli 0.137.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "sub2api-summary",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-06-28T01:43:11Z",
+    "first_seen_at": "2026-06-28T01:43:11Z",
+    "last_seen_at": "2026-06-28T01:43:11Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "sub2api-summary/huangwb8/9c20a075c5fe78a1b8cdce31ba524ec942f29734f05bed20a7a2cecb15ed988d",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-07-10T23:18:28Z"
+  }
+}
