@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "The validator uses curl -I only and marks Hacker News URLs returning HEAD 405 plus anti-bot-protected official pages returning HEAD 403 as invalid even though GET retrieval succeeds.",
+    "additional_notes": null,
+    "evidence": [
+      "Summary reported 53 invalid of 125; most were HEAD 405 for Hacker News or HEAD 403 for accessible anti-bot pages."
+    ],
+    "expected_behavior": "Treat URLs as valid when a normal GET request succeeds, including sites that reject HEAD with 403 or 405.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run validate_links.py against a Markdown file containing a Hacker News item URL.",
+      "Observe HTTP 405 invalid, then fetch the same URL with GET and receive readable content."
+    ],
+    "severity": "medium",
+    "summary": "HEAD-only URL validation misclassifies GET-accessible links as invalid",
+    "workaround": "Recheck HEAD failures with GET and distinguish access-control responses from true 404 or DNS failures."
+  },
+  "bug_hash": "9ab025b0a7c7a4d2d89603a0d0825681077e5f10919ad4d83ad639bbb1729c94",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The validator uses curl -I only and marks Hacker News URLs returning HEAD 405 plus anti-bot-protected official pages returning HEAD 403 as invalid even though GET retrieval succeeds.",
+        "expected_behavior": "Treat URLs as valid when a normal GET request succeeds, including sites that reject HEAD with 403 or 405.",
+        "summary": "HEAD-only URL validation misclassifies GET-accessible links as invalid"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F84",
+            "product_name": "macOS",
+            "product_version": "26.5.2"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "Codex CLI"
+        },
+        "software_versions": {
+          "claude": "2.1.205 (Claude Code)",
+          "codex": "codex-cli 0.144.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "validate-md-ref"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F84",
+        "product_name": "macOS",
+        "product_version": "26.5.2"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "Codex CLI",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.205 (Claude Code)",
+      "codex": "codex-cli 0.144.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "validate-md-ref",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-10T14:39:01Z",
+    "first_seen_at": "2026-07-10T14:39:01Z",
+    "last_seen_at": "2026-07-10T14:39:01Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "validate-md-ref/huangwb8/9ab025b0a7c7a4d2d89603a0d0825681077e5f10919ad4d83ad639bbb1729c94",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-07-10T23:18:37Z"
+  }
+}
