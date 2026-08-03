@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "递归脱敏仅按字段名含 email 或身份字段表处理；支付仪表盘响应的 user 字段含邮箱时被原样写入。",
+    "additional_notes": null,
+    "evidence": [
+      "sanitize_payload 调用递归字段名规则，但 user 不在身份字段名单中；该字段的字符串邮箱未被识别。"
+    ],
+    "expected_behavior": "所有响应位置的邮箱和身份标识均被稳定标记替换后再写入本地数据目录。",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "使用 collect_sub2api_data.py 采集包含 payment_dashboard 响应的管理员只读数据。",
+      "检查输出 JSON 中 user 字段；可见未替换的邮箱字符串。"
+    ],
+    "severity": "high",
+    "summary": "脱敏采集遗漏 user 字段中的邮箱",
+    "workaround": "在继续分析前移除受影响响应文件；修复前不要把该文件作为可安全脱敏产物保留或共享。"
+  },
+  "bug_hash": "1c63ef8646a834c4b6e4933d2864220565ccbd296701d2c96e23913f2bb298da",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "递归脱敏仅按字段名含 email 或身份字段表处理；支付仪表盘响应的 user 字段含邮箱时被原样写入。",
+        "expected_behavior": "所有响应位置的邮箱和身份标识均被稳定标记替换后再写入本地数据目录。",
+        "summary": "脱敏采集遗漏 user 字段中的邮箱"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F84",
+            "product_name": "macOS",
+            "product_version": "26.5.2"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "codex"
+        },
+        "software_versions": {
+          "claude": "2.1.205 (Claude Code)",
+          "codex": "codex-cli 0.144.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v22.11.0",
+          "npm": "10.9.0",
+          "python3": "Python 3.9.6",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "sub2api-summary"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F84",
+        "product_name": "macOS",
+        "product_version": "26.5.2"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.9.6",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.205 (Claude Code)",
+      "codex": "codex-cli 0.144.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v22.11.0",
+      "npm": "10.9.0",
+      "python3": "Python 3.9.6",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "sub2api-summary",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-24T06:59:03Z",
+    "first_seen_at": "2026-07-24T06:59:03Z",
+    "last_seen_at": "2026-07-24T06:59:03Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "sub2api-summary/huangwb8/1c63ef8646a834c4b6e4933d2864220565ccbd296701d2c96e23913f2bb298da",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-03T15:11:39Z"
+  }
+}
