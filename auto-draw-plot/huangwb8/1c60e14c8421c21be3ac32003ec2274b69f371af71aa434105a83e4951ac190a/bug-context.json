@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "The skill sends model, prompt, size, and n only; quality is merely prompt text, and the workflow is PNG-only.",
+    "additional_notes": null,
+    "evidence": [
+      "Request metadata contains no quality or output_format; the CLI and workflow expose only output_png."
+    ],
+    "expected_behavior": "When the user requests lowest quality, smallest native size, and JPEG output, the skill should send explicit provider parameters and deliver bytes whose MIME and extension match JPEG.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run a gpt-image-2 generation requesting low quality and JPEG.",
+      "Inspect the sanitized request metadata and final output contract."
+    ],
+    "severity": "high",
+    "summary": "gpt-image-2 provider controls and JPEG delivery are not represented by the skill contract",
+    "workaround": "Keep PNG as a canonical intermediate, add explicit validated provider controls, then export JPEG with matching MIME, extension, and metadata."
+  },
+  "bug_hash": "1c60e14c8421c21be3ac32003ec2274b69f371af71aa434105a83e4951ac190a",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The skill sends model, prompt, size, and n only; quality is merely prompt text, and the workflow is PNG-only.",
+        "expected_behavior": "When the user requests lowest quality, smallest native size, and JPEG output, the skill should send explicit provider parameters and deliver bytes whose MIME and extension match JPEG.",
+        "summary": "gpt-image-2 provider controls and JPEG delivery are not represented by the skill contract"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F84",
+            "product_name": "macOS",
+            "product_version": "26.5.2"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "codex"
+        },
+        "software_versions": {
+          "claude": "2.1.205 (Claude Code)",
+          "codex": "codex-cli 0.144.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "auto-draw-plot"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F84",
+        "product_name": "macOS",
+        "product_version": "26.5.2"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.205 (Claude Code)",
+      "codex": "codex-cli 0.144.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "auto-draw-plot",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-18T10:27:15Z",
+    "first_seen_at": "2026-07-18T10:27:15Z",
+    "last_seen_at": "2026-07-18T10:27:15Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "auto-draw-plot/huangwb8/1c60e14c8421c21be3ac32003ec2274b69f371af71aa434105a83e4951ac190a",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-03T15:10:13Z"
+  }
+}
