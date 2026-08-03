@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "A successful local-runner pass was rejected because an existing .DS_Store changed during execution.",
+    "additional_notes": null,
+    "evidence": [
+      "[ERROR] detected a modified unauthorized path: .DS_Store"
+    ],
+    "expected_behavior": "The runner should ignore operating-system metadata changes or compare only task-owned paths while preserving user files.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run the skill from a macOS project directory containing an existing .DS_Store.",
+      "Allow Finder or the filesystem to update that file while the skill is running."
+    ],
+    "severity": "important",
+    "summary": "Integrity check treats an automatically modified existing .DS_Store as an unauthorized path change",
+    "workaround": "Run the skill from a clean isolated directory inside the declared task workspace."
+  },
+  "bug_hash": "1d5ac6f17d837cb5c7bb8f3bdebc266d644c938664a3767753b03b5b4fab5e5b",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "A successful local-runner pass was rejected because an existing .DS_Store changed during execution.",
+        "expected_behavior": "The runner should ignore operating-system metadata changes or compare only task-owned paths while preserving user files.",
+        "summary": "Integrity check treats an automatically modified existing .DS_Store as an unauthorized path change"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F84",
+            "product_name": "macOS",
+            "product_version": "26.5.2"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": "2.1.205 (Claude Code)",
+          "codex": "codex-cli 0.144.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v22.11.0",
+          "npm": "10.9.0",
+          "python3": "Python 3.9.6",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "paper-explain-figures"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F84",
+        "product_name": "macOS",
+        "product_version": "26.5.2"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.9.6",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.205 (Claude Code)",
+      "codex": "codex-cli 0.144.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v22.11.0",
+      "npm": "10.9.0",
+      "python3": "Python 3.9.6",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "paper-explain-figures",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-24T16:42:45Z",
+    "first_seen_at": "2026-07-24T16:42:45Z",
+    "last_seen_at": "2026-07-24T16:42:45Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "paper-explain-figures/huangwb8/1d5ac6f17d837cb5c7bb8f3bdebc266d644c938664a3767753b03b5b4fab5e5b",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-03T15:11:08Z"
+  }
+}
