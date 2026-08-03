@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "上传脚本只有传入 sync-record 才更新记录；默认 detail-only 后记录仍可能不可见。",
+    "additional_notes": null,
+    "evidence": [
+      "技能说明宣称 detail-only 会同步记录为用户可见，而脚本实现仅在 sync-record 参数为真时更新。"
+    ],
+    "expected_behavior": "仅上传明细时应自动将复用记录同步为可见，使后台能够发送附件通知。",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "对不可见的既有发票记录运行上传脚本并传入 detail-only。",
+      "检查脚本条件分支，未提供 sync-record 时不会调用更新接口。"
+    ],
+    "severity": "medium",
+    "summary": "detail-only 上传说明承诺自动设为可见，但脚本实际需要额外 sync-record 参数",
+    "workaround": "detail-only 模式自动同步复用记录，并加入针对该行为的单元测试。"
+  },
+  "bug_hash": "27f8b60dadba0b7ee12b5b5ce5c2c99dd6e6723921f57693465e4987867600ac",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "上传脚本只有传入 sync-record 才更新记录；默认 detail-only 后记录仍可能不可见。",
+        "expected_behavior": "仅上传明细时应自动将复用记录同步为可见，使后台能够发送附件通知。",
+        "summary": "detail-only 上传说明承诺自动设为可见，但脚本实际需要额外 sync-record 参数"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F84",
+            "product_name": "macOS",
+            "product_version": "26.5.2"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "codex"
+        },
+        "software_versions": {
+          "claude": "2.1.205 (Claude Code)",
+          "codex": "codex-cli 0.144.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "sub2api-reimbursement"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F84",
+        "product_name": "macOS",
+        "product_version": "26.5.2"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.205 (Claude Code)",
+      "codex": "codex-cli 0.144.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "sub2api-reimbursement",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-17T03:15:51Z",
+    "first_seen_at": "2026-07-17T03:15:51Z",
+    "last_seen_at": "2026-07-17T03:15:51Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "sub2api-reimbursement/huangwb8/27f8b60dadba0b7ee12b5b5ce5c2c99dd6e6723921f57693465e4987867600ac",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-03T15:11:23Z"
+  }
+}
