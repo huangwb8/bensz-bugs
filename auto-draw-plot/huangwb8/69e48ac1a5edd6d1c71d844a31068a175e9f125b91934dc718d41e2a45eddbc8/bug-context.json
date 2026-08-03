@@ -1,0 +1,123 @@
+{
+  "bug": {
+    "actual_behavior": "The workflow submitted one gpt-image-2 job and recorded running polls, then exited successfully without output.jpg, result metadata, or the requested public JPEG.",
+    "additional_notes": null,
+    "evidence": [
+      "The run manifest records a queued async job and the poll log ends with status running; no generated image or final result metadata exists."
+    ],
+    "expected_behavior": "If an accepted async image job is still running, the workflow should continue polling according to its configured wait policy or exit nonzero with a safe resumable failure record.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run auto-draw-plot with the default async gpt-image-2 job endpoint and a valid general-mode request.",
+      "Observe a job that remains running past the script polling window.",
+      "Confirm the process exits zero while the requested output file is absent."
+    ],
+    "severity": "medium",
+    "summary": "Async image job can leave the draw script with exit code zero but no output image",
+    "workaround": "Do not resubmit. Poll the existing job read-only until terminal, then download its result through the provider client or retry only after the job is terminal."
+  },
+  "bug_hash": "69e48ac1a5edd6d1c71d844a31068a175e9f125b91934dc718d41e2a45eddbc8",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The workflow submitted one gpt-image-2 job and recorded running polls, then exited successfully without output.jpg, result metadata, or the requested public JPEG.",
+        "expected_behavior": "If an accepted async image job is still running, the workflow should continue polling according to its configured wait policy or exit nonzero with a safe resumable failure record.",
+        "summary": "Async image job can leave the draw script with exit code zero but no output image"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25G72",
+            "product_name": "macOS",
+            "product_version": "26.6"
+          },
+          "processor": "arm",
+          "release": "25.6.0",
+          "version": "Darwin Kernel Version 25.6.0: Sat Jul 11 15:27:27 PDT 2026; root:xnu-12377.161.13~4/RELEASE_ARM64_T6041"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": "2.1.205 (Claude Code)",
+          "codex": "codex-cli 0.144.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v22.11.0",
+          "npm": "10.9.0",
+          "python3": "Python 3.9.6",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "auto-draw-plot"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25G72",
+        "product_name": "macOS",
+        "product_version": "26.6"
+      },
+      "processor": "arm",
+      "release": "25.6.0",
+      "version": "Darwin Kernel Version 25.6.0: Sat Jul 11 15:27:27 PDT 2026; root:xnu-12377.161.13~4/RELEASE_ARM64_T6041"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.205 (Claude Code)",
+      "codex": "codex-cli 0.144.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v22.11.0",
+      "npm": "10.9.0",
+      "python3": "Python 3.9.6",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "auto-draw-plot",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-01T03:05:58Z",
+    "first_seen_at": "2026-08-01T03:05:58Z",
+    "last_seen_at": "2026-08-01T03:05:58Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "auto-draw-plot/huangwb8/69e48ac1a5edd6d1c71d844a31068a175e9f125b91934dc718d41e2a45eddbc8",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-03T15:10:20Z"
+  }
+}
