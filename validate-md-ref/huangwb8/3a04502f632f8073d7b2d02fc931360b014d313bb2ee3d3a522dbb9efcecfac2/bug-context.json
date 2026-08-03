@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "脚本把合法的 #refN 链接标记为 URL 格式非法，并计入 invalid，导致有效率严重失真",
+    "additional_notes": null,
+    "evidence": [
+      "24 个合法 #refN 站内锚点均被报告为 URL 格式非法"
+    ],
+    "expected_behavior": "仅对 http/https 外部链接执行网络检查，并单独校验 #refN 站内锚点是否存在",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "在 Markdown 中加入正文引用 [1](#ref1) 和对应的 HTML 锚点",
+      "运行 scripts/validate_links.py 检查该文档"
+    ],
+    "severity": "medium",
+    "summary": "站内锚点被当作非法外部 URL 并计入无效链接",
+    "workaround": "忽略脚本对 # 开头链接的网络校验结果，另用文本匹配核对引用和锚点集合"
+  },
+  "bug_hash": "3a04502f632f8073d7b2d02fc931360b014d313bb2ee3d3a522dbb9efcecfac2",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "脚本把合法的 #refN 链接标记为 URL 格式非法，并计入 invalid，导致有效率严重失真",
+        "expected_behavior": "仅对 http/https 外部链接执行网络检查，并单独校验 #refN 站内锚点是否存在",
+        "summary": "站内锚点被当作非法外部 URL 并计入无效链接"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25F84",
+            "product_name": "macOS",
+            "product_version": "26.5.2"
+          },
+          "processor": "arm",
+          "release": "25.5.0",
+          "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": "2.1.205 (Claude Code)",
+          "codex": "codex-cli 0.144.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v25.6.1",
+          "npm": "11.11.0",
+          "python3": "Python 3.12.7",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "validate-md-ref"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25F84",
+        "product_name": "macOS",
+        "product_version": "26.5.2"
+      },
+      "processor": "arm",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:26:22 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T8132"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.7",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.205 (Claude Code)",
+      "codex": "codex-cli 0.144.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v25.6.1",
+      "npm": "11.11.0",
+      "python3": "Python 3.12.7",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "validate-md-ref",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-12T11:24:51Z",
+    "first_seen_at": "2026-07-12T11:24:51Z",
+    "last_seen_at": "2026-07-12T11:24:51Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "validate-md-ref/huangwb8/3a04502f632f8073d7b2d02fc931360b014d313bb2ee3d3a522dbb9efcecfac2",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-03T15:11:44Z"
+  }
+}
