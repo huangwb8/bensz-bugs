@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "The archive extracts to a nested pandoc-version directory while discovery checks the parent layout, so the wrapper exits with pandoc binary not found after installation.",
+    "additional_notes": null,
+    "evidence": [
+      "Wrapper error: pandoc binary not found after installation; executable exists under nested version/version/pandoc.exe."
+    ],
+    "expected_behavior": "After downloading and extracting Pandoc, the wrapper should discover pandoc.exe and continue rendering.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run knit_rmd_html.py for an Rmd on Windows with no Pandoc on PATH.",
+      "Inspect the bootstrap directory and observe pandoc.exe one version directory deeper than the path used for discovery."
+    ],
+    "severity": "important",
+    "summary": "Windows Pandoc bootstrap extracts an extra nested version directory and then fails discovery",
+    "workaround": "Prepend the actual nested executable directory to PATH and set RSTUDIO_PANDOC before rerunning with no install."
+  },
+  "bug_hash": "dacad173c2fbe8e9a8266cca8f245ce43a477fce8be05242a0073b31ff83b101",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The archive extracts to a nested pandoc-version directory while discovery checks the parent layout, so the wrapper exits with pandoc binary not found after installation.",
+        "expected_behavior": "After downloading and extracting Pandoc, the wrapper should discover pandoc.exe and continue rendering.",
+        "summary": "Windows Pandoc bootstrap extracts an extra nested version directory and then fails discovery"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "knit-rmd-html"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "Windows workstation"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "knit-rmd-html",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-01T16:48:09Z",
+    "first_seen_at": "2026-08-01T16:48:09Z",
+    "last_seen_at": "2026-08-01T16:48:09Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "knit-rmd-html/huangwb8/dacad173c2fbe8e9a8266cca8f245ce43a477fce8be05242a0073b31ff83b101",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:13:01Z"
+  }
+}
