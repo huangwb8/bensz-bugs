@@ -1,0 +1,122 @@
+{
+  "bug": {
+    "actual_behavior": "The successful environment check prints a masked credential prefix to terminal output",
+    "additional_notes": null,
+    "evidence": [
+      "Terminal output includes a redacted credential prefix; no credential characters are included in this report"
+    ],
+    "expected_behavior": "Report whether the credential exists and configuration is valid without printing any credential characters",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run env_check with a valid env file",
+      "Observe the KEY status line in terminal output"
+    ],
+    "severity": "medium",
+    "summary": "env_check outputs a redacted credential prefix despite a zero-token-disclosure project policy",
+    "workaround": "Suppress the KEY line in user-visible output; report only presence and validity"
+  },
+  "bug_hash": "9c3fcf0a9ff2cab7faf5cebf8d29dde3d1b469f9d8c5a390143fa3f330e3421a",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The successful environment check prints a masked credential prefix to terminal output",
+        "expected_behavior": "Report whether the credential exists and configuration is valid without printing any credential characters",
+        "summary": "env_check outputs a redacted credential prefix despite a zero-token-disclosure project policy"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25G72",
+            "product_name": "macOS",
+            "product_version": "26.6"
+          },
+          "processor": "arm",
+          "release": "25.6.0",
+          "version": "Darwin Kernel Version 25.6.0: Sat Jul 11 15:27:27 PDT 2026; root:xnu-12377.161.13~4/RELEASE_ARM64_T6041"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": "2.1.205 (Claude Code)",
+          "codex": "codex-cli 0.144.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v22.11.0",
+          "npm": "10.9.0",
+          "python3": "Python 3.9.6",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "bensz-notes-vibe-config"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25G72",
+        "product_name": "macOS",
+        "product_version": "26.6"
+      },
+      "processor": "arm",
+      "release": "25.6.0",
+      "version": "Darwin Kernel Version 25.6.0: Sat Jul 11 15:27:27 PDT 2026; root:xnu-12377.161.13~4/RELEASE_ARM64_T6041"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.9.6",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.205 (Claude Code)",
+      "codex": "codex-cli 0.144.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v22.11.0",
+      "npm": "10.9.0",
+      "python3": "Python 3.9.6",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "bensz-notes-vibe-config",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-03T15:58:39Z",
+    "first_seen_at": "2026-08-03T15:58:39Z",
+    "last_seen_at": "2026-08-03T15:58:39Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "bensz-notes-vibe-config/huangwb8/9c3fcf0a9ff2cab7faf5cebf8d29dde3d1b469f9d8c5a390143fa3f330e3421a",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T13:57:45Z"
+  }
+}
