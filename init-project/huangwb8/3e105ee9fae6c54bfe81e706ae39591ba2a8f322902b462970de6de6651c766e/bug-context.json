@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "The generator aborts with UnicodeEncodeError while printing a check-mark character to a GBK console.",
+    "additional_notes": null,
+    "evidence": [
+      "UnicodeEncodeError: 'gbk' codec can't encode character '\\\\u2705'"
+    ],
+    "expected_behavior": "Auto initialization completes when the required bac dependency is already installed.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Open Windows PowerShell configured with a GBK output encoding.",
+      "Run generate.py --auto in an R analysis project."
+    ],
+    "severity": "medium",
+    "summary": "Windows GBK console encoding aborts auto initialization",
+    "workaround": "Set Python stdout encoding to UTF-8 for the invocation."
+  },
+  "bug_hash": "3e105ee9fae6c54bfe81e706ae39591ba2a8f322902b462970de6de6651c766e",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The generator aborts with UnicodeEncodeError while printing a check-mark character to a GBK console.",
+        "expected_behavior": "Auto initialization completes when the required bac dependency is already installed.",
+        "summary": "Windows GBK console encoding aborts auto initialization"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "init-project"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "init-project",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-01T08:51:09Z",
+    "first_seen_at": "2026-08-01T08:51:09Z",
+    "last_seen_at": "2026-08-01T08:51:09Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "init-project/huangwb8/3e105ee9fae6c54bfe81e706ae39591ba2a8f322902b462970de6de6651c766e",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:11:49Z"
+  }
+}
