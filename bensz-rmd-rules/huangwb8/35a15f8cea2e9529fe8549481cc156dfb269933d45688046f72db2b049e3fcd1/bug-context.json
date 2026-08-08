@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "脚本只报告 6 个输出块，恰好等于 include_graphics 图数，遗漏全部 13 个 render_dt_output 表格",
+    "additional_notes": null,
+    "evidence": [
+      "Rmd 有 13 次 render_dt_output 调用，检查器仅检测到 6 个输出块"
+    ],
+    "expected_behavior": "覆盖检查应识别 Rmd 中由 render_dt_output 生成的 13 个可见 DT 表格及 6 个图形",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "在 Rmd 中使用该 skill 推荐的 render_dt_output 输出 DT 表格",
+      "运行 check_figure_table_interpretation.py Rmd --strict"
+    ],
+    "severity": "medium",
+    "summary": "图表解读覆盖脚本未识别该 skill 推荐的 render_dt_output 表格 helper",
+    "workaround": "主代理手工枚举并逐表审查；后续把 render_dt_output 加入 checker 默认模式"
+  },
+  "bug_hash": "35a15f8cea2e9529fe8549481cc156dfb269933d45688046f72db2b049e3fcd1",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "脚本只报告 6 个输出块，恰好等于 include_graphics 图数，遗漏全部 13 个 render_dt_output 表格",
+        "expected_behavior": "覆盖检查应识别 Rmd 中由 render_dt_output 生成的 13 个可见 DT 表格及 6 个图形",
+        "summary": "图表解读覆盖脚本未识别该 skill 推荐的 render_dt_output 表格 helper"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "bensz-rmd-rules"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "bensz-rmd-rules",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-22T17:25:35Z",
+    "first_seen_at": "2026-07-22T17:25:35Z",
+    "last_seen_at": "2026-07-22T17:25:35Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "bensz-rmd-rules/huangwb8/35a15f8cea2e9529fe8549481cc156dfb269933d45688046f72db2b049e3fcd1",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:10:58Z"
+  }
+}
