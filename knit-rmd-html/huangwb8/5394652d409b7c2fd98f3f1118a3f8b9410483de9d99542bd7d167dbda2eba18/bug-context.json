@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "The wrapper exits with pandoc binary not found after installation before invoking rmarkdown render.",
+    "additional_notes": null,
+    "evidence": [
+      "[pandoc] pandoc binary not found after installation."
+    ],
+    "expected_behavior": "The render wrapper should detect an existing Pandoc or install it and continue rendering the R Markdown file.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run the knit_rmd_html.py wrapper on a valid Rmd file on Windows where pandoc is not on PATH.",
+      "Observe the wrapper attempt bootstrap and then terminate before rendering."
+    ],
+    "severity": "medium",
+    "summary": "Windows bootstrap reports pandoc missing immediately after attempted installation",
+    "workaround": "Locate an existing local Pandoc installation, set RSTUDIO_PANDOC or PATH, and rerun the wrapper or call rmarkdown::render directly."
+  },
+  "bug_hash": "5394652d409b7c2fd98f3f1118a3f8b9410483de9d99542bd7d167dbda2eba18",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The wrapper exits with pandoc binary not found after installation before invoking rmarkdown render.",
+        "expected_behavior": "The render wrapper should detect an existing Pandoc or install it and continue rendering the R Markdown file.",
+        "summary": "Windows bootstrap reports pandoc missing immediately after attempted installation"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "knit-rmd-html"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "Windows"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "knit-rmd-html",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-11T09:40:04Z",
+    "first_seen_at": "2026-07-11T09:40:04Z",
+    "last_seen_at": "2026-07-11T09:40:04Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "knit-rmd-html/huangwb8/5394652d409b7c2fd98f3f1118a3f8b9410483de9d99542bd7d167dbda2eba18",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:12:41Z"
+  }
+}
