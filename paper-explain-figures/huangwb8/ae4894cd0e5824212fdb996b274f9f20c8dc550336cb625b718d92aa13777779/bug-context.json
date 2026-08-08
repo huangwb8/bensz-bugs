@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "脚本常量仍指向 .bensz-api/skills/paper-explain-figures，可能绕过统一任务归档",
+    "additional_notes": null,
+    "evidence": [
+      "文档要求 task 级目录，脚本使用 skills 级旧路径"
+    ],
+    "expected_behavior": "脚本应将中间产物写入当前任务根目录下的 paper-explain-figures 边界",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "读取当前 SKILL.md 的任务工作区约定",
+      "检查 scripts/paper_explain_figures.py 中 WORK_DIR_REL 常量"
+    ],
+    "severity": "medium",
+    "summary": "运行脚本仍使用旧版隐藏工作目录，与当前任务级目录契约不一致",
+    "workaround": "从本轮任务根目录内运行脚本，使旧路径仍被包在单一任务目录中，并记录目录映射"
+  },
+  "bug_hash": "ae4894cd0e5824212fdb996b274f9f20c8dc550336cb625b718d92aa13777779",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "脚本常量仍指向 .bensz-api/skills/paper-explain-figures，可能绕过统一任务归档",
+        "expected_behavior": "脚本应将中间产物写入当前任务根目录下的 paper-explain-figures 边界",
+        "summary": "运行脚本仍使用旧版隐藏工作目录，与当前任务级目录契约不一致"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "paper-explain-figures"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "paper-explain-figures",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-22T17:09:08Z",
+    "first_seen_at": "2026-07-22T17:09:08Z",
+    "last_seen_at": "2026-07-22T17:09:08Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "paper-explain-figures/huangwb8/ae4894cd0e5824212fdb996b274f9f20c8dc550336cb625b718d92aa13777779",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:13:18Z"
+  }
+}
