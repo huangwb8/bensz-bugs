@@ -1,0 +1,116 @@
+{
+  "bug": {
+    "actual_behavior": "The archive extracts successfully with pandoc.exe in the version directory, but the wrapper checks a bin/pandoc path and exits with pandoc binary not found after installation.",
+    "additional_notes": null,
+    "evidence": [
+      "The extracted archive contains pandoc.exe, while the wrapper checks a Unix-style bin/pandoc path."
+    ],
+    "expected_behavior": "After downloading and extracting the Windows Pandoc zip, the wrapper should locate pandoc.exe and continue rendering.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run knit_rmd_html.py on Windows without pandoc already in PATH.",
+      "Allow the wrapper to download and extract the supported Windows Pandoc zip."
+    ],
+    "severity": "high",
+    "summary": "Windows Pandoc auto-install checks a Unix-style bin/pandoc path instead of the extracted pandoc.exe",
+    "workaround": "Prepend the extracted Pandoc version directory containing pandoc.exe to PATH and rerun with --no-install."
+  },
+  "bug_hash": "e5bda788840a68c2c709aae14006c6281da7ffccfd2ab8b5481a0685ce85d1b9",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The archive extracts successfully with pandoc.exe in the version directory, but the wrapper checks a bin/pandoc path and exits with pandoc binary not found after installation.",
+        "expected_behavior": "After downloading and extracting the Windows Pandoc zip, the wrapper should locate pandoc.exe and continue rendering.",
+        "summary": "Windows Pandoc auto-install checks a Unix-style bin/pandoc path instead of the extracted pandoc.exe"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "pandoc": "3.8.3",
+          "python": "3.13",
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "knit-rmd-html"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "Windows workstation"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "pandoc": "3.8.3",
+      "python": "3.13",
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "knit-rmd-html",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-06T05:20:28Z",
+    "first_seen_at": "2026-08-06T05:20:28Z",
+    "last_seen_at": "2026-08-06T05:20:28Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "knit-rmd-html/huangwb8/e5bda788840a68c2c709aae14006c6281da7ffccfd2ab8b5481a0685ce85d1b9",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:13:05Z"
+  }
+}
