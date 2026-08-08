@@ -1,0 +1,113 @@
+{
+  "bug": {
+    "actual_behavior": "The coverage checker reports zero failed blocks then crashes while printing a Unicode check mark under a GBK console; the quality checker flags constants inside display equations; the coverage checker reports zero outputs for reports that use render_dt_output.",
+    "additional_notes": null,
+    "evidence": [
+      "UnicodeEncodeError for the check-mark character; formula constants listed as untracked literal numbers; detected output block count is zero despite visible DT helper calls."
+    ],
+    "expected_behavior": "Strict validation should exit successfully for compliant reports, ignore mathematical definition constants as untracked result numbers, and detect visible render_dt_output tables.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run check_figure_table_interpretation.py with --strict in a Windows GBK PowerShell console.",
+      "Run check_interpretation_quality.py on an Rmd containing standard mathematical definitions.",
+      "Run the coverage checker on an Rmd whose visible tables use render_dt_output as final expressions."
+    ],
+    "severity": "medium",
+    "summary": "Rmd validation scripts mis-handle Windows encoding, formulas, and helper-based DT outputs",
+    "workaround": "Set PYTHONIOENCODING=utf-8; complement coverage with check_htmlwidget_visibility.py and rendered-HTML inspection; rewrite equivalent formulas without digit literals where practical."
+  },
+  "bug_hash": "e78c98a7bb1a88810e6043110be5510b1e1854491091fc50afb7cda5d7ed82c0",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The coverage checker reports zero failed blocks then crashes while printing a Unicode check mark under a GBK console; the quality checker flags constants inside display equations; the coverage checker reports zero outputs for reports that use render_dt_output.",
+        "expected_behavior": "Strict validation should exit successfully for compliant reports, ignore mathematical definition constants as untracked result numbers, and detect visible render_dt_output tables.",
+        "summary": "Rmd validation scripts mis-handle Windows encoding, formulas, and helper-based DT outputs"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "bensz-rmd-rules"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "bensz-rmd-rules",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-01T09:22:30Z",
+    "first_seen_at": "2026-08-01T09:22:30Z",
+    "last_seen_at": "2026-08-01T09:22:30Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "bensz-rmd-rules/huangwb8/e78c98a7bb1a88810e6043110be5510b1e1854491091fc50afb7cda5d7ed82c0",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:11:38Z"
+  }
+}
