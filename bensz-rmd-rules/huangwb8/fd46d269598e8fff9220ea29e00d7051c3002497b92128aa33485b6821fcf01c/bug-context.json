@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "An Rmd containing many visible render_dt_output tables reports zero detected output blocks when it contains no directly matched DT datatable calls.",
+    "additional_notes": null,
+    "evidence": [
+      "The checker reported zero output blocks for a report containing multiple render_dt_output chunks."
+    ],
+    "expected_behavior": "Tables rendered through the skill recommended render_dt_output helper should be detected as visible table outputs and require adjacent interpretation.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Create an Rmd whose visible tables use render_dt_output as the final chunk expression.",
+      "Run check_figure_table_interpretation.py in strict mode and observe detected output blocks equals zero."
+    ],
+    "severity": "important",
+    "summary": "Interpretation coverage checker does not recognize the recommended render_dt_output helper",
+    "workaround": "Run htmlwidget visibility checks and manually audit each render_dt_output chunk until the helper is added to the checker patterns."
+  },
+  "bug_hash": "fd46d269598e8fff9220ea29e00d7051c3002497b92128aa33485b6821fcf01c",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "An Rmd containing many visible render_dt_output tables reports zero detected output blocks when it contains no directly matched DT datatable calls.",
+        "expected_behavior": "Tables rendered through the skill recommended render_dt_output helper should be detected as visible table outputs and require adjacent interpretation.",
+        "summary": "Interpretation coverage checker does not recognize the recommended render_dt_output helper"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "bensz-rmd-rules"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "Windows workstation"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "bensz-rmd-rules",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-01T15:12:11Z",
+    "first_seen_at": "2026-08-01T15:12:11Z",
+    "last_seen_at": "2026-08-01T15:12:11Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "bensz-rmd-rules/huangwb8/fd46d269598e8fff9220ea29e00d7051c3002497b92128aa33485b6821fcf01c",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:11:41Z"
+  }
+}
