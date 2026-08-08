@@ -1,0 +1,111 @@
+{
+  "bug": {
+    "actual_behavior": "报告显示未通过块数为零，但打印 Unicode 勾号触发 UnicodeEncodeError 并返回非零状态",
+    "additional_notes": null,
+    "evidence": [
+      "检测到输出块 6、未通过 0，随后 gbk 无法编码 U+2705"
+    ],
+    "expected_behavior": "检测到零个未通过块时应正常返回通过状态",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "在 Windows GBK PowerShell 运行 check_figure_table_interpretation.py Rmd --strict"
+    ],
+    "severity": "low",
+    "summary": "图表解读覆盖脚本在 Windows GBK 终端打印 Unicode 状态符时异常退出",
+    "workaround": "以报告计数作为覆盖结论，并由主代理人工复核；脚本输出阶段设置 UTF-8 或避免 Unicode 状态符"
+  },
+  "bug_hash": "da4db102da34aca1dd593240d287389b9aace8821709437052effe116711ac03",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "报告显示未通过块数为零，但打印 Unicode 勾号触发 UnicodeEncodeError 并返回非零状态",
+        "expected_behavior": "检测到零个未通过块时应正常返回通过状态",
+        "summary": "图表解读覆盖脚本在 Windows GBK 终端打印 Unicode 状态符时异常退出"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "bensz-rmd-rules"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "bensz-rmd-rules",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-22T17:12:20Z",
+    "first_seen_at": "2026-07-22T17:12:20Z",
+    "last_seen_at": "2026-07-22T17:12:20Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "bensz-rmd-rules/huangwb8/da4db102da34aca1dd593240d287389b9aace8821709437052effe116711ac03",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:11:31Z"
+  }
+}
