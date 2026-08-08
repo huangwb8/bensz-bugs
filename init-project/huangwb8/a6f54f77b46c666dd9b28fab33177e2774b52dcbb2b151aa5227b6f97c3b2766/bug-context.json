@@ -1,0 +1,114 @@
+{
+  "bug": {
+    "actual_behavior": "检测到 bac 包后输出 Unicode 对勾字符并触发 UnicodeEncodeError，流程在写入项目文档前中止",
+    "additional_notes": null,
+    "evidence": [
+      "UnicodeEncodeError: gbk codec cannot encode check-mark character in ensure_bac_dependency"
+    ],
+    "expected_behavior": "生成器应在 Windows 默认控制台编码下完成 BAC 检查与项目初始化",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "在 Windows PowerShell 中以默认 Python 输出编码运行 generate.py --auto",
+      "进入 ensure_bac_dependency 并输出已检测到 bac 包的状态信息"
+    ],
+    "severity": "important",
+    "summary": "Windows GBK 控制台输出 Unicode 状态图标导致初始化中止",
+    "workaround": "运行前设置 PYTHONUTF8=1，使 Python 标准输出使用 UTF-8"
+  },
+  "bug_hash": "a6f54f77b46c666dd9b28fab33177e2774b52dcbb2b151aa5227b6f97c3b2766",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "检测到 bac 包后输出 Unicode 对勾字符并触发 UnicodeEncodeError，流程在写入项目文档前中止",
+        "expected_behavior": "生成器应在 Windows 默认控制台编码下完成 BAC 检查与项目初始化",
+        "summary": "Windows GBK 控制台输出 Unicode 状态图标导致初始化中止"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "init-project": "2.3.3",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "init-project"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "workstation"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "init-project": "2.3.3",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "init-project",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-01T14:00:28Z",
+    "first_seen_at": "2026-08-01T14:00:28Z",
+    "last_seen_at": "2026-08-01T14:00:28Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "init-project/huangwb8/a6f54f77b46c666dd9b28fab33177e2774b52dcbb2b151aa5227b6f97c3b2766",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:11:52Z"
+  }
+}
