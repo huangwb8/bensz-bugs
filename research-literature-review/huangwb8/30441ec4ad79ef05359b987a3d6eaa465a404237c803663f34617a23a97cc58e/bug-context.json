@@ -1,0 +1,125 @@
+{
+  "bug": {
+    "actual_behavior": "检索报告写出 500 条候选记录，但 dedupe_papers.py 解析时触发 JSONDecodeError: Unterminated string，Pipeline 在阶段 2 中止",
+    "additional_notes": "根因已定位：dedupe_papers.load_papers 使用 str.splitlines()，会把 JSON 字符串内合法的 Unicode 行分隔符误判为记录边界。",
+    "evidence": [
+      "JSONDecodeError: Unterminated string starting at line 1 column 912; dedupe stage exit 1",
+      "JSONDecodeError: Unterminated string starting at line 1 column 912; 过滤 U+0085/U+2028/U+2029 后同一去重命令成功：500 输入、488 输出"
+    ],
+    "expected_behavior": "多查询检索完成后应生成逐行可独立解析的 JSONL，去重阶段应能读取全部有效记录并继续",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "准备 15 组跨符号回归、Prompt 偏移和长程智能体的 OpenAlex 查询",
+      "运行 run_pipeline.py 至检索和去重阶段",
+      "观察 papers JSONL 中至少一行不完整，去重脚本中止",
+      "观察 papers JSONL 中含 U+2028/U+2029 等合法 Unicode 行分隔符；逐行读取可解析，但 read_text().splitlines() 会在 JSON 字符串内部切断记录"
+    ],
+    "severity": "medium",
+    "summary": "多查询检索输出含不完整 JSONL 记录导致去重阶段中止",
+    "workaround": "保留原始 JSONL 后，将 U+0085/U+2028/U+2029 正规化为空格，再运行去重；长期修复应以文件对象逐行迭代替代 read_text().splitlines()"
+  },
+  "bug_hash": "30441ec4ad79ef05359b987a3d6eaa465a404237c803663f34617a23a97cc58e",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "检索报告写出 500 条候选记录，但 dedupe_papers.py 解析时触发 JSONDecodeError: Unterminated string，Pipeline 在阶段 2 中止",
+        "expected_behavior": "多查询检索完成后应生成逐行可独立解析的 JSONL，去重阶段应能读取全部有效记录并继续",
+        "summary": "多查询检索输出含不完整 JSONL 记录导致去重阶段中止"
+      },
+      "environment": {
+        "os": {
+          "family": "Darwin",
+          "machine": "arm64",
+          "macos": {
+            "build_version": "25G76",
+            "product_name": "macOS",
+            "product_version": "26.6.1"
+          },
+          "processor": "arm",
+          "release": "25.6.0",
+          "version": "Darwin Kernel Version 25.6.0: Sat Jul 11 15:27:27 PDT 2026; root:xnu-12377.161.13~4/RELEASE_ARM64_T6041"
+        },
+        "runtime": {
+          "agent_runtime": "Codex CLI"
+        },
+        "software_versions": {
+          "claude": "2.1.205 (Claude Code)",
+          "codex": "codex-cli 0.144.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.50.1 (Apple Git-155)",
+          "node": "v22.11.0",
+          "npm": "10.9.0",
+          "python3": "Python 3.9.6",
+          "rg": "ripgrep 15.1.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "research-literature-review"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "arm64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Darwin",
+      "machine": "arm64",
+      "macos": {
+        "build_version": "25G76",
+        "product_name": "macOS",
+        "product_version": "26.6.1"
+      },
+      "processor": "arm",
+      "release": "25.6.0",
+      "version": "Darwin Kernel Version 25.6.0: Sat Jul 11 15:27:27 PDT 2026; root:xnu-12377.161.13~4/RELEASE_ARM64_T6041"
+    },
+    "runtime": {
+      "agent_runtime": "Codex CLI",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.9.6",
+      "shell": "/bin/zsh"
+    },
+    "software_versions": {
+      "claude": "2.1.205 (Claude Code)",
+      "codex": "codex-cli 0.144.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.50.1 (Apple Git-155)",
+      "node": "v22.11.0",
+      "npm": "10.9.0",
+      "python3": "Python 3.9.6",
+      "rg": "ripgrep 15.1.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "research-literature-review",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-07T12:18:54Z",
+    "first_seen_at": "2026-08-07T12:18:54Z",
+    "last_seen_at": "2026-08-07T12:22:05Z",
+    "local_path": null,
+    "occurrence_count": 2,
+    "public_path": "research-literature-review/huangwb8/30441ec4ad79ef05359b987a3d6eaa465a404237c803663f34617a23a97cc58e",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T13:58:33Z"
+  }
+}
