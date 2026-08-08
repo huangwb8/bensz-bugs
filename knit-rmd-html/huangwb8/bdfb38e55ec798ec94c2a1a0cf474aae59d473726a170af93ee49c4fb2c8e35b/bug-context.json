@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "Pandoc is extracted successfully under two nested version directories, but the wrapper reports that the binary is not found after installation.",
+    "additional_notes": null,
+    "evidence": [
+      "Wrapper reports pandoc binary not found after installation while pandoc.exe exists under pandoc-version/pandoc-version."
+    ],
+    "expected_behavior": "After downloading and extracting Pandoc, the wrapper should locate the executable and continue rendering.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run knit_rmd_html.py for an Rmd on Windows without pandoc already on PATH.",
+      "Observe the binary under a duplicated version directory and the wrapper failure."
+    ],
+    "severity": "medium",
+    "summary": "Windows Pandoc bootstrap cannot discover executable extracted into a duplicated version directory",
+    "workaround": "Prepend the actual nested Pandoc executable directory to PATH before invoking the wrapper."
+  },
+  "bug_hash": "bdfb38e55ec798ec94c2a1a0cf474aae59d473726a170af93ee49c4fb2c8e35b",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "Pandoc is extracted successfully under two nested version directories, but the wrapper reports that the binary is not found after installation.",
+        "expected_behavior": "After downloading and extracting Pandoc, the wrapper should locate the executable and continue rendering.",
+        "summary": "Windows Pandoc bootstrap cannot discover executable extracted into a duplicated version directory"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex CLI"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "knit-rmd-html"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "Windows workstation"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex CLI",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "knit-rmd-html",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-06T21:08:24Z",
+    "first_seen_at": "2026-08-06T21:08:24Z",
+    "last_seen_at": "2026-08-06T21:08:24Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "knit-rmd-html/huangwb8/bdfb38e55ec798ec94c2a1a0cf474aae59d473726a170af93ee49c4fb2c8e35b",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:12:08Z"
+  }
+}
