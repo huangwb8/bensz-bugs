@@ -1,0 +1,111 @@
+{
+  "bug": {
+    "actual_behavior": "The release extracts pandoc.exe at the package root, while the installer expects bin/pandoc, so it reports pandoc binary not found after installation.",
+    "additional_notes": null,
+    "evidence": [
+      "pandoc binary not found after installation; extracted archive contains pandoc.exe at its root."
+    ],
+    "expected_behavior": "The wrapper should install and detect the requested Pandoc release on Windows.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run knit_rmd_html.py on Windows when pandoc is not initially present in PATH."
+    ],
+    "severity": "high",
+    "summary": "Pandoc Windows zip layout is incompatible with installer path assumption",
+    "workaround": "Prepend the existing local Pandoc directory to PATH and run with --no-install."
+  },
+  "bug_hash": "a378992d0726afca609e310158c1cc64e387acb4e4d7906ff96eca782ea8c5b6",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The release extracts pandoc.exe at the package root, while the installer expects bin/pandoc, so it reports pandoc binary not found after installation.",
+        "expected_behavior": "The wrapper should install and detect the requested Pandoc release on Windows.",
+        "summary": "Pandoc Windows zip layout is incompatible with installer path assumption"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "knit-rmd-html"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "Windows"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "knit-rmd-html",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-16T07:47:33Z",
+    "first_seen_at": "2026-07-16T07:47:33Z",
+    "last_seen_at": "2026-07-16T07:47:33Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "knit-rmd-html/huangwb8/a378992d0726afca609e310158c1cc64e387acb4e4d7906ff96eca782ea8c5b6",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:12:47Z"
+  }
+}
