@@ -1,0 +1,111 @@
+{
+  "bug": {
+    "actual_behavior": "subprocess text decoding uses the GBK locale and raises UnicodeDecodeError when R emits UTF-8 output.",
+    "additional_notes": null,
+    "evidence": [
+      "UnicodeDecodeError: 'gbk' codec cannot decode byte 0x80"
+    ],
+    "expected_behavior": "The wrapper should capture UTF-8 R output without crashing on Windows.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run knit_rmd_html.py from default Windows PowerShell on an Rmd whose render output contains non-ASCII text."
+    ],
+    "severity": "high",
+    "summary": "Python wrapper decodes R render output with Windows GBK locale",
+    "workaround": "Set PYTHONUTF8=1 before invoking the wrapper."
+  },
+  "bug_hash": "fc0e7699bce1fb2efde5ad45d83815541c5eec367dbb75a3bbe6b00025d49767",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "subprocess text decoding uses the GBK locale and raises UnicodeDecodeError when R emits UTF-8 output.",
+        "expected_behavior": "The wrapper should capture UTF-8 R output without crashing on Windows.",
+        "summary": "Python wrapper decodes R render output with Windows GBK locale"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "knit-rmd-html"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "Windows"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "knit-rmd-html",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-07-16T07:47:33Z",
+    "first_seen_at": "2026-07-16T07:47:33Z",
+    "last_seen_at": "2026-07-16T07:47:33Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "knit-rmd-html/huangwb8/fc0e7699bce1fb2efde5ad45d83815541c5eec367dbb75a3bbe6b00025d49767",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:13:08Z"
+  }
+}
