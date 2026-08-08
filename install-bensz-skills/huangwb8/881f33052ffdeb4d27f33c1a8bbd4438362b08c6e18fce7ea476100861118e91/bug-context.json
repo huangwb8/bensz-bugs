@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "两个目标均完成技能更新，但随后出现 GBK 解码异常和 WinError 5，安装器以退出码 1 结束，临时目录残留",
+    "additional_notes": null,
+    "evidence": [
+      "subprocess reader reported UnicodeDecodeError for GBK; cleanup reported WinError 5 on a Git pack index file"
+    ],
+    "expected_behavior": "远程检查安装完成后应清理临时目录并以成功状态退出",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "在 Windows 默认 GBK 代码页下运行 install.py --remote --check --general",
+      "确认安装后等待安装器清理临时 Git 克隆目录"
+    ],
+    "severity": "medium",
+    "summary": "Windows 远程安装完成后，清理临时 Git 克隆目录时因解码异常和文件锁退出失败",
+    "workaround": "确认安装摘要后，等待文件锁释放，再手动删除临时目录；已安装技能可正常使用"
+  },
+  "bug_hash": "881f33052ffdeb4d27f33c1a8bbd4438362b08c6e18fce7ea476100861118e91",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "两个目标均完成技能更新，但随后出现 GBK 解码异常和 WinError 5，安装器以退出码 1 结束，临时目录残留",
+        "expected_behavior": "远程检查安装完成后应清理临时目录并以成功状态退出",
+        "summary": "Windows 远程安装完成后，清理临时 Git 克隆目录时因解码异常和文件锁退出失败"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex on Windows"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": null,
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "install-bensz-skills"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex on Windows",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": null,
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "install-bensz-skills",
+    "source_path": null,
+    "source_repo": "huangwb8/skills"
+  },
+  "tracking": {
+    "collected_at": "2026-07-20T01:30:21Z",
+    "first_seen_at": "2026-07-20T01:30:21Z",
+    "last_seen_at": "2026-07-20T01:30:21Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "install-bensz-skills/huangwb8/881f33052ffdeb4d27f33c1a8bbd4438362b08c6e18fce7ea476100861118e91",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-08-08T12:12:02Z"
+  }
+}
