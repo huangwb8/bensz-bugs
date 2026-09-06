@@ -1,0 +1,117 @@
+{
+  "bug": {
+    "actual_behavior": "With Windows Rscript locale C, R/knitr output is serialized as <U+XXXX>; Pandoc escapes it to &lt;U+XXXX&gt;, so the HTML displays literal Unicode placeholders.",
+    "additional_notes": "The issue is in rendering-chain locale/encoding handling, not in bensz-rmd-rules content guidance. Local report only; no public upload requested.",
+    "evidence": [
+      "02-ablation03-experiment.html initially contained many literal Unicode placeholders; R locale reported C; after document/output hooks decode placeholders and rerender, placeholder counts are zero."
+    ],
+    "expected_behavior": "Rendered HTML should retain real UTF-8 Chinese and other Unicode characters in code output, inline results, and document text.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run the knit-rmd-html renderer for a Chinese Rmd on Windows with Rscript locale C.",
+      "Include Chinese text in emitted output or inline/document content.",
+      "Inspect the generated HTML and observe literal <U+XXXX> or &lt;U+XXXX&gt; placeholders."
+    ],
+    "severity": "medium",
+    "summary": "R Markdown renderer does not preserve Unicode output when Windows R locale is C",
+    "workaround": "Set knitr encoding to UTF-8 and decode <U+XXXX> plus HTML-escaped placeholders in knitr output/text/document hooks before Pandoc."
+  },
+  "bug_hash": "3b2860bc6beeac573bf4707f9e003bf2216d8c203b6e887ffb0c7765cec820bc",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "With Windows Rscript locale C, R/knitr output is serialized as <U+XXXX>; Pandoc escapes it to &lt;U+XXXX&gt;, so the HTML displays literal Unicode placeholders.",
+        "expected_behavior": "Rendered HTML should retain real UTF-8 Chinese and other Unicode characters in code output, inline results, and document text.",
+        "summary": "R Markdown renderer does not preserve Unicode output when Windows R locale is C"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.153.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "pandoc": "via rmarkdown",
+          "python3": null,
+          "r": "4.3.1",
+          "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "knit-rmd-html"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "Windows"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.153.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "pandoc": "via rmarkdown",
+      "python3": null,
+      "r": "4.3.1",
+      "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "knit-rmd-html",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-09-06T15:19:01Z",
+    "first_seen_at": "2026-09-06T15:19:01Z",
+    "last_seen_at": "2026-09-06T15:19:01Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "knit-rmd-html/huangwb8/3b2860bc6beeac573bf4707f9e003bf2216d8c203b6e887ffb0c7765cec820bc",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-09-06T15:33:32Z"
+  }
+}
