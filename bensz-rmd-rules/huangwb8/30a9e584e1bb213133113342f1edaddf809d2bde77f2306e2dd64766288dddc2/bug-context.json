@@ -1,0 +1,113 @@
+{
+  "bug": {
+    "actual_behavior": "The template calls graphics::par() unconditionally; in a non-interactive R session this opens the default PDF device and leaves an empty Rplots.pdf in the working directory.",
+    "additional_notes": "The same unconditional par call also exists in the optional showtext branch and should receive the same guard.",
+    "evidence": [
+      "The installed template calls graphics::par(family = base_family) during automatic initialization and the resulting PDF has zero pages."
+    ],
+    "expected_behavior": "Sourcing the environment template should configure plot defaults without creating files or opening a graphics device.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Start a non-interactive R session in an empty working directory.",
+      "Source a 00.Environment.R generated from the bensz-rmd-rules template.",
+      "Observe that Rplots.pdf is created even though no plot was requested."
+    ],
+    "severity": "important",
+    "summary": "00.Environment.R template opens the default PDF device during source and creates Rplots.pdf",
+    "workaround": "Only call graphics::par() when grDevices::dev.cur() is greater than 1; keep the selected family in options for devices opened later."
+  },
+  "bug_hash": "30a9e584e1bb213133113342f1edaddf809d2bde77f2306e2dd64766288dddc2",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The template calls graphics::par() unconditionally; in a non-interactive R session this opens the default PDF device and leaves an empty Rplots.pdf in the working directory.",
+        "expected_behavior": "Sourcing the environment template should configure plot defaults without creating files or opening a graphics device.",
+        "summary": "00.Environment.R template opens the default PDF device during source and creates Rplots.pdf"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.154.0-alpha.6.1",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "bensz-rmd-rules"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "Windows workstation"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.154.0-alpha.6.1",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "bensz-rmd-rules",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-09-15T09:14:23Z",
+    "first_seen_at": "2026-09-15T09:14:23Z",
+    "last_seen_at": "2026-09-15T09:14:23Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "bensz-rmd-rules/huangwb8/30a9e584e1bb213133113342f1edaddf809d2bde77f2306e2dd64766288dddc2",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-09-15T09:15:38Z"
+  }
+}
