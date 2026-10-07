@@ -1,0 +1,114 @@
+{
+  "bug": {
+    "actual_behavior": "R 4.3.1 rejects C.UTF-8, falls back to the C locale, and prints Unicode characters as escaped byte sequences in report output.",
+    "additional_notes": null,
+    "evidence": [
+      "R startup reports failed C.UTF-8 locale categories; before normalization, Unicode is emitted as octal byte escapes."
+    ],
+    "expected_behavior": "Rendering should preserve Unicode output on the documented Windows R workflow.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Set LC_ALL, LC_CTYPE, and LANG to C.UTF-8 on Windows.",
+      "Run the wrapper with R 4.3.1 and print Unicode text from an R chunk."
+    ],
+    "severity": "medium",
+    "summary": "Windows R rendering does not normalize an unsupported C.UTF-8 locale",
+    "workaround": "On Windows, set LC_CTYPE to Chinese_China.utf8 before report code executes, or normalize the child-process locale in the wrapper."
+  },
+  "bug_hash": "455dc575dcf4421fc103e3057fa088802675b4ce04f33420d36e8683a8b710c4",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "R 4.3.1 rejects C.UTF-8, falls back to the C locale, and prints Unicode characters as escaped byte sequences in report output.",
+        "expected_behavior": "Rendering should preserve Unicode output on the documented Windows R workflow.",
+        "summary": "Windows R rendering does not normalize an unsupported C.UTF-8 locale"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.153.0",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "r": "4.3.1",
+          "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "knit-rmd-html"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "desktop"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.153.0",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "r": "4.3.1",
+      "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "knit-rmd-html",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-09-06T16:03:59Z",
+    "first_seen_at": "2026-09-06T16:03:59Z",
+    "last_seen_at": "2026-09-06T16:03:59Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "knit-rmd-html/huangwb8/455dc575dcf4421fc103e3057fa088802675b4ce04f33420d36e8683a8b710c4",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-10-07T11:04:33Z"
+  }
+}
