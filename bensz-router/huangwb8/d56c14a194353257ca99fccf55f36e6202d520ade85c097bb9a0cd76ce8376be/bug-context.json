@@ -1,0 +1,114 @@
+{
+  "bug": {
+    "actual_behavior": "After successful installation, hooks doctor exits with invalid managed hook definitions.",
+    "additional_notes": null,
+    "evidence": [
+      "hook_config.py _desired uses subprocess.list2cmdline, while _is_adapter_group uses POSIX shlex.split. Unquoted Windows backslashes are removed; generated=False, quoted=True, forward-slash=True in the minimal validation test."
+    ],
+    "expected_behavior": "A clean user-scope MCP hooks installation should pass ownership validation and doctor.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "On Windows, install version 1.1.4 into a dedicated Python environment whose absolute executable path has no spaces.",
+      "Run hooks install --harness codex --scope user --transport mcp, then hooks doctor with the same options."
+    ],
+    "severity": "important",
+    "summary": "Windows hooks install creates definitions that hooks doctor rejects",
+    "workaround": "Quote the executable path in the five generated hook commands and matching ownership definitions; retain all matchers and context budgets. Doctor then reports setup_complete=true, no conflicts, MCP process_verified=true and tools_verified=true. Reinstalling hooks may regenerate invalid unquoted commands."
+  },
+  "bug_hash": "d56c14a194353257ca99fccf55f36e6202d520ade85c097bb9a0cd76ce8376be",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "After successful installation, hooks doctor exits with invalid managed hook definitions.",
+        "expected_behavior": "A clean user-scope MCP hooks installation should pass ownership validation and doctor.",
+        "summary": "Windows hooks install creates definitions that hooks doctor rejects"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "bensz-router": "1.1.4",
+          "claude": null,
+          "codex": "codex-cli 0.162.0-alpha.2",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.2.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "bensz-router"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "workstation"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "bensz-router": "1.1.4",
+      "claude": null,
+      "codex": "codex-cli 0.162.0-alpha.2",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.2.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "bensz-router",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-10-07T10:11:13Z",
+    "first_seen_at": "2026-10-07T10:11:13Z",
+    "last_seen_at": "2026-10-07T10:11:13Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "bensz-router/huangwb8/d56c14a194353257ca99fccf55f36e6202d520ade85c097bb9a0cd76ce8376be",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-10-07T11:04:11Z"
+  }
+}
