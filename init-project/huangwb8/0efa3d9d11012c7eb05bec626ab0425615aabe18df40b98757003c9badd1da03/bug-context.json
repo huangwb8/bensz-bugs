@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "The script exits before initialization with UnicodeEncodeError while printing a checkmark to a GBK console.",
+    "additional_notes": null,
+    "evidence": [
+      "UnicodeEncodeError: gbk codec cannot encode character U+2705 while printing the bac dependency status."
+    ],
+    "expected_behavior": "The auto initializer completes or emits console output compatible with the active Windows console encoding.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Run the initializer with --auto in a Windows PowerShell session using GBK console output.",
+      "Ensure the bac dependency is already installed so the script prints its dependency-status message."
+    ],
+    "severity": "medium",
+    "summary": "Windows GBK console output crashes init-project when status messages contain Unicode checkmarks.",
+    "workaround": "Set PYTHONIOENCODING=utf-8 for the initializer process."
+  },
+  "bug_hash": "0efa3d9d11012c7eb05bec626ab0425615aabe18df40b98757003c9badd1da03",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The script exits before initialization with UnicodeEncodeError while printing a checkmark to a GBK console.",
+        "expected_behavior": "The auto initializer completes or emits console output compatible with the active Windows console encoding.",
+        "summary": "Windows GBK console output crashes init-project when status messages contain Unicode checkmarks."
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.144.0-alpha.4",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "init-project"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.144.0-alpha.4",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.1.0 (rev af60c2de9d)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "init-project",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-08-08T13:19:45Z",
+    "first_seen_at": "2026-08-08T13:19:45Z",
+    "last_seen_at": "2026-08-08T13:19:45Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "init-project/huangwb8/0efa3d9d11012c7eb05bec626ab0425615aabe18df40b98757003c9badd1da03",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-10-07T11:04:18Z"
+  }
+}
