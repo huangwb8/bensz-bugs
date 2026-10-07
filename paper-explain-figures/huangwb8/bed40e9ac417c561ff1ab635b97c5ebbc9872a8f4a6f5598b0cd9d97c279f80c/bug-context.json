@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "The runner always constructs a new timestamped task root under the current working directory, so invoking it after the host locks a root creates a second task root.",
+    "additional_notes": null,
+    "evidence": [
+      "The script assigns task_root from cwd plus a fresh datetime stamp and has no task-root override."
+    ],
+    "expected_behavior": "The runner should accept and reuse the task root already declared and locked by the host workflow.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Declare a unique task root for a figure interpretation task.",
+      "Run paper_explain_figures.py from the project root and inspect lines 1184-1206 or the created directory."
+    ],
+    "severity": "medium",
+    "summary": "Runner cannot reuse a host-locked task workspace",
+    "workaround": "Run a temporary compatibility copy inside the already locked task workspace and redirect all generated files there."
+  },
+  "bug_hash": "bed40e9ac417c561ff1ab635b97c5ebbc9872a8f4a6f5598b0cd9d97c279f80c",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "The runner always constructs a new timestamped task root under the current working directory, so invoking it after the host locks a root creates a second task root.",
+        "expected_behavior": "The runner should accept and reuse the task root already declared and locked by the host workflow.",
+        "summary": "Runner cannot reuse a host-locked task workspace"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.153.4",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "paper-explain-figures"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.153.4",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "paper-explain-figures",
+    "source_path": "redacted",
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-09-10T07:52:24Z",
+    "first_seen_at": "2026-09-10T07:52:24Z",
+    "last_seen_at": "2026-09-10T07:52:24Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "paper-explain-figures/huangwb8/bed40e9ac417c561ff1ab635b97c5ebbc9872a8f4a6f5598b0cd9d97c279f80c",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-10-07T11:05:33Z"
+  }
+}
