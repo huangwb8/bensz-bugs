@@ -1,0 +1,114 @@
+{
+  "bug": {
+    "actual_behavior": "A subprocess reader thread raised UnicodeDecodeError using the GBK codec, while the installer returned zero and completed both target installations.",
+    "additional_notes": null,
+    "evidence": [
+      "UnicodeDecodeError: 'gbk' codec can't decode a byte from Git subprocess output."
+    ],
+    "expected_behavior": "Remote installation should decode Git subprocess output without background thread exceptions on Windows.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "On Windows PowerShell with Python 3.12, run install.py --remote --auto --general.",
+      "Observe a background reader thread UnicodeDecodeError before the normal installation report."
+    ],
+    "severity": "medium",
+    "summary": "Windows remote install emits a subprocess reader UnicodeDecodeError while the main installation continues",
+    "workaround": "Treat the console exception as non-fatal only after validating exit code and generated manifests."
+  },
+  "bug_hash": "5115bb8c13c74c7763cd12ad760c0ef29a52326114f36e1c8bc3fd40cb2201d6",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "A subprocess reader thread raised UnicodeDecodeError using the GBK codec, while the installer returned zero and completed both target installations.",
+        "expected_behavior": "Remote installation should decode Git subprocess output without background thread exceptions on Windows.",
+        "summary": "Windows remote install emits a subprocess reader UnicodeDecodeError while the main installation continues"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex CLI on Windows PowerShell"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.154.0-alpha.6.1",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python": "3.12.2",
+          "python3": null,
+          "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "install-bensz-skills"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex CLI on Windows PowerShell",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.2",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.154.0-alpha.6.1",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python": "3.12.2",
+      "python3": null,
+      "rg": "ripgrep 15.2.0 (rev e89fff89ac)"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "install-bensz-skills",
+    "source_path": null,
+    "source_repo": "https://github.com/huangwb8/skills"
+  },
+  "tracking": {
+    "collected_at": "2026-09-17T13:58:07Z",
+    "first_seen_at": "2026-09-17T13:58:07Z",
+    "last_seen_at": "2026-09-17T13:58:07Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "install-bensz-skills/huangwb8/5115bb8c13c74c7763cd12ad760c0ef29a52326114f36e1c8bc3fd40cb2201d6",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-10-07T11:04:27Z"
+  }
+}
