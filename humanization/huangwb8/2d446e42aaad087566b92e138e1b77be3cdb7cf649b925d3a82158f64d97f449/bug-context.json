@@ -1,0 +1,112 @@
+{
+  "bug": {
+    "actual_behavior": "init returns managed_python_required although installer runtime health is ready and BSK is 2.1.6.",
+    "additional_notes": null,
+    "evidence": [
+      "control.py lines 24-25 hard-code bin/python and extensionless bin/bsk; line 44 rejects native Windows executable paths."
+    ],
+    "expected_behavior": "The control entry accepts the installer-managed native Windows python.exe and bsk.cmd.",
+    "impact": "这是由 skill 设计缺陷导致的真实环境问题，需要纳入后续修复闭环。",
+    "is_skill_design_defect": true,
+    "reproduction_steps": [
+      "Prepare the managed runtime with bootstrap_install.py --ensure-runtime on Windows.",
+      "Invoke installed humanization/scripts/control.py init using that managed python.exe."
+    ],
+    "severity": "medium",
+    "summary": "Windows managed runtime is rejected by hard-coded POSIX Python and BSK paths",
+    "workaround": "Preserve drafts and review evidence; do not patch installed skill source or fabricate ready."
+  },
+  "bug_hash": "2d446e42aaad087566b92e138e1b77be3cdb7cf649b925d3a82158f64d97f449",
+  "deduplication": {
+    "fingerprint_payload": {
+      "bug": {
+        "actual_behavior": "init returns managed_python_required although installer runtime health is ready and BSK is 2.1.6.",
+        "expected_behavior": "The control entry accepts the installer-managed native Windows python.exe and bsk.cmd.",
+        "summary": "Windows managed runtime is rejected by hard-coded POSIX Python and BSK paths"
+      },
+      "environment": {
+        "os": {
+          "family": "Windows",
+          "machine": "AMD64",
+          "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+          "release": "11",
+          "version": "10.0.26200"
+        },
+        "runtime": {
+          "agent_runtime": "Codex"
+        },
+        "software_versions": {
+          "claude": null,
+          "codex": "codex-cli 0.169.0-alpha.11.1",
+          "gh": "gh version [redacted:phone])",
+          "git": "git version 2.45.1.windows.1",
+          "node": "v21.7.1",
+          "npm": null,
+          "python3": null,
+          "rg": "ripgrep 15.2.0"
+        }
+      },
+      "skill": {
+        "author": "Bensz Conan",
+        "name": "humanization"
+      }
+    },
+    "hash_algorithm": "sha256",
+    "hash_version": "1"
+  },
+  "environment": {
+    "device": {
+      "architecture": "AMD64",
+      "hostname": null,
+      "type": "unknown"
+    },
+    "os": {
+      "family": "Windows",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "release": "11",
+      "version": "10.0.26200"
+    },
+    "runtime": {
+      "agent_runtime": "Codex",
+      "cwd": null,
+      "hostname": null,
+      "local_username": null,
+      "python_runtime": "3.12.1",
+      "shell": null
+    },
+    "software_versions": {
+      "claude": null,
+      "codex": "codex-cli 0.169.0-alpha.11.1",
+      "gh": "gh version [redacted:phone])",
+      "git": "git version 2.45.1.windows.1",
+      "node": "v21.7.1",
+      "npm": null,
+      "python3": null,
+      "rg": "ripgrep 15.2.0"
+    }
+  },
+  "reporter": {
+    "display_name": "huangwb8",
+    "github_username": "huangwb8",
+    "local_username": "redacted"
+  },
+  "schema_version": "1.0.0",
+  "skill": {
+    "author": "Bensz Conan",
+    "name": "humanization",
+    "source_path": null,
+    "source_repo": null
+  },
+  "tracking": {
+    "collected_at": "2026-11-17T06:01:46Z",
+    "first_seen_at": "2026-11-17T06:01:46Z",
+    "last_seen_at": "2026-11-17T06:01:46Z",
+    "local_path": null,
+    "occurrence_count": 1,
+    "public_path": "humanization/huangwb8/2d446e42aaad087566b92e138e1b77be3cdb7cf649b925d3a82158f64d97f449",
+    "public_repo": "huangwb8/bensz-bugs",
+    "public_reported": true,
+    "reported_at": "2026-11-17T06:06:28Z"
+  }
+}
